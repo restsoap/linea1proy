@@ -1,0 +1,64 @@
+<form class="example-form">
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Placa</mat-label>
+          <input matInput/>
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Modelo</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Marca</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Tipo vehículo</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Capacidad</mat-label>
+          <input matInput />
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <button
+    mat-fab
+    color="accent"
+    style="float: right"
+    [routerLink]="['/vehiculo']"
+  >
+    <mat-icon>save</mat-icon>
+  </button>
+
+  <button
+    mat-fab
+    color="accent"
+    style="float: right"
+    [routerLink]="['/vehiculo']"
+  >
+    <mat-icon>cancel</mat-icon>
+  </button>
+</form>
