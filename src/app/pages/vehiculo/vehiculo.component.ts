@@ -13,7 +13,7 @@ import {VehiculoService} from './../../_service/vehiculo.service';
 
 export class VehiculoComponent implements OnInit {
 
-  displayedColumns: string [] = ['placa', 'modelo', 'marca', 'tipoVehiuclo', 'capacidad'];
+  displayedColumns: string [] = ['placa', 'modelo', 'marca', 'tipoVehiuclo', 'capacidad', 'ver'];
   dataSource = new MatTableDataSource<Vehiculo>();
   @ViewChild(MatSort) sort: MatSort;
 
