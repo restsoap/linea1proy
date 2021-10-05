@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Vehiculo} from 'src/app/_model/Vehiculo';
@@ -14,6 +15,7 @@ export class VehiculoComponent implements OnInit {
 
   displayedColumns: string [] = ['placa', 'modelo', 'marca', 'tipoVehiuclo', 'capacidad'];
   dataSource = new MatTableDataSource<Vehiculo>();
+  @ViewChild(MatSort) sort: MatSort;
 
   //variables para el paginador 
   cantidad: number;
@@ -30,7 +32,9 @@ export class VehiculoComponent implements OnInit {
   }
 
   cambiarPagina(e: any){
+    //indice de pagina
     this.pageIndex = e.pageIndex;
+    //tamaño de paginado
     this.pageSize = e.pageSize;
     this.listarPaginado();
   }
@@ -39,7 +43,13 @@ export class VehiculoComponent implements OnInit {
     this.serviceVehiculo.listarVehiculo(this.pageIndex, this.pageSize).subscribe(data => {
       this.dataSource = new MatTableDataSource(data.content);
       this.cantidad = data.totalElements;
+      this.dataSource.sort = this.sort;
     });
+  }
+
+  //metodo para aplicar el filtro a un data table
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
 
 }

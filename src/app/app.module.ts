@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
-import { FormsModule } from '@angular/forms';
+//ReactiveFormsModule sirve para enviar los parametros
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule} from './material/material.module'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BuscarComponent } from './pages/buscar/buscar.component';
@@ -34,7 +35,8 @@ import { AgregarVehiculoComponent } from './pages/vehiculo/agregar-vehiculo/agre
     FormsModule, 
     MaterialModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

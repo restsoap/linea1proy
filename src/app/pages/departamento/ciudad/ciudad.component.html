@@ -1,17 +1,26 @@
-<h2>esto es ciudad</h2>
+<div [hidden]="route.children.length !== 0" class="container">
 
-<div class="container">
-    <table mat-table [dataSource]="dataSourceCiudad" class="mat-elevation-z8">
+    <mat-form-field>
+        <mat-label>Filtro</mat-label>
+        <input
+          matInput
+          (keyup)="applyFilter($event.target.value)"
+          placeholder="Filtrar"
+          #input
+        />
+      </mat-form-field>
+
+    <table mat-table [dataSource]="dataSourceCiudad" matSort class="mat-elevation-z8">
 
         <!-- Position codigo -->
-        <ng-container matColumnDef="codigo">
-            <th mat-header-cell *matHeaderCellDef> Código. </th>
+        <ng-container matColumnDef="idCiudad">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Código. </th>
             <td mat-cell *matCellDef="let element"> {{element.idCiudad}} </td>
         </ng-container>
 
         <!-- Name nombre -->
         <ng-container matColumnDef="nombre">
-            <th mat-header-cell *matHeaderCellDef> Nombre Ciduad </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre Ciudad </th>
             <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
         </ng-container>
 

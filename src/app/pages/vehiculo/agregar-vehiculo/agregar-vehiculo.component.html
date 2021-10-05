@@ -1,4 +1,5 @@
-<form class="example-form">
+<!--submit es el evento para enviar los datos-->
+<form [formGroup]="form" #formVehiculo="ngForm" (ngSubmit)="guardar()"  class="example-form">
   <table class="example-full-width" cellspacing="0">
     <tr>
       <td>
@@ -41,6 +42,7 @@
           <input matInput />
         </mat-form-field>
       </td>
+      
     </tr>
   </table>
 
