@@ -22,4 +22,8 @@ export class VehiculoService {
     return this.http.post(`${this.url}/guardar`, vehiculo);
   }
 
+  listarIdVehiculo(idVehiculo: number){
+    return this.http.get<Vehiculo>(`${this.url}/listar/${idVehiculo}`);
+  }
+
 }

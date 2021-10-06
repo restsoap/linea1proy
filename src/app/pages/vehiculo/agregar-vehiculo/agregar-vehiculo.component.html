@@ -1,17 +1,17 @@
-<!--submit es el evento para enviar los datos-->
-<form [formGroup]="form" #formVehiculo="ngForm" (ngSubmit)="guardar()"  class="example-form">
+<!--submit para enviar los datos-->
+<form [formGroup]="Vehform" #formVehiculo="ngForm" (ngSubmit)="guardar()">
   <table class="example-full-width" cellspacing="0">
     <tr>
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Placa</mat-label>
-          <input matInput/>
+          <input matInput placeholder="Placa" formControlName="placa"/>
         </mat-form-field>
       </td>
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Modelo</mat-label>
-          <input matInput />
+          <input matInput placeholder="Modelo" formControlName="modelo"/>
         </mat-form-field>
       </td>
     </tr>
@@ -22,13 +22,13 @@
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Marca</mat-label>
-          <input matInput />
+          <input matInput placeholder="Marca" formControlName="marca"/>
         </mat-form-field>
       </td>
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Tipo vehículo</mat-label>
-          <input matInput />
+          <input matInput placeholder="tipo Vehículo" formControlName="tipoVehiuclo"/>
         </mat-form-field>
       </td>
     </tr>
@@ -39,7 +39,7 @@
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Capacidad</mat-label>
-          <input matInput />
+          <input matInput placeholder="Capacidad" formControlName="capacidad"/>
         </mat-form-field>
       </td>
       
@@ -50,7 +50,8 @@
     mat-fab
     color="accent"
     style="float: right"
-    [routerLink]="['/vehiculo']"
+    type="submit"
+    [disabled]="formVehiculo.invalid"
   >
     <mat-icon>save</mat-icon>
   </button>

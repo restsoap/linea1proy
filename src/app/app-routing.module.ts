@@ -18,7 +18,8 @@ const routes: Routes = [
     ]
   },
   {path: 'vehiculo', component: VehiculoComponent, children: [
-    {path: 'agregarvehiculo', component: AgregarVehiculoComponent }
+    {path: 'agregarvehiculo', component: AgregarVehiculoComponent },
+    {path: 'edicion/:idVehiculo', component: AgregarVehiculoComponent}
   ]
   },
   {path: '**', component: BuscarComponent}

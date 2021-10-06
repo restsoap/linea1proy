@@ -25,7 +25,7 @@ export class VehiculoComponent implements OnInit {
   pageSize: number = 5;
 
   constructor(private serviceVehiculo: VehiculoService,
-    public route: ActivatedRoute) { }
+              public route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.listarPaginado();
