@@ -11,4 +11,7 @@ td {
   padding-right: 8px;
 }
 
-  
+.container {
+  width: 80%;
+  margin: 2% 5% 5% 5%;
+}

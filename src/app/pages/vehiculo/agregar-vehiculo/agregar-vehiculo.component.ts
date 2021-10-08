@@ -10,22 +10,28 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './agregar-vehiculo.component.html',
   styleUrls: ['./agregar-vehiculo.component.css']
 })
-export class AgregarVehiculoComponent implements OnInit {
+export class AgregarVehiculoComponent implements OnInit{
 
-  //Vehform: FormGroup;
-  Vehform = this.fb.group({
-    placa: ['', Validators.required],
-    modelo: [0, Validators.required],
-    marca: ['', Validators.required],
-    tipoVehiuclo: ['', Validators.required],
-    capacidad: ['', Validators.required]
-  });
+  Vehform: FormGroup;
+  placa = '';
+  modelo = 0;
+  marca = 0;
+  tipoVehiuclo = '';
+  capacidad = '';
 
-  
+  selected : string; 
+
+  // cargar el select
+  positions = [
+    {value: 'Ford', viewValue: 'Ford'},
+    {value: 'Chevrolet', viewValue: 'Chevrolet'},
+    {value: 'Toyota', viewValue: 'Toyota'}
+  ];
+
   // id para la comprobación
   private idV: number;
   // bool para comprobar si es edición o guardado 
-  private edicion: boolean;
+  private edicion: boolean; 
 
   // inyectamos el servicio
   constructor(private serviceAgregarVehiculo: VehiculoService,
@@ -33,16 +39,22 @@ export class AgregarVehiculoComponent implements OnInit {
               private fb: FormBuilder) { }
 
   ngOnInit(): void {
-
+    this.Vehform = this.fb.group({
+      placa: ['', Validators.required],
+      modelo: [null, Validators.required],
+      marca: ['', Validators.required],
+      tipoVehiuclo: ['', Validators.required],
+      capacidad: ['', Validators.required]
+    });
   }
 
   iniciarVacio(){
     this.Vehform = new FormGroup({
-      'placa': new FormControl('', [Validators.required]),
-      'modelo': new FormControl(0, [Validators.required]),
-      'marca': new FormControl('', [Validators.required]),
-      'tipoVehiuclo': new FormControl('', [Validators.required]),
-      'capacidad': new FormControl('', [Validators.required]),
+      ' placa ': new FormControl('', [Validators.required]),
+      ' modelo ': new FormControl(0, [Validators.required]),
+      ' marca ': new FormControl('', [Validators.required]),
+      ' tipoVehiuclo ': new FormControl('', [Validators.required]),
+      ' capacidad ': new FormControl('', [Validators.required]),
     });
   }
 
@@ -59,7 +71,7 @@ export class AgregarVehiculoComponent implements OnInit {
     vehiculo.marca = this.Vehform.value['marca'];
     vehiculo.tipoVehiuclo = this.Vehform.value['tipoVehiuclo'];
     vehiculo.capacidad = this.Vehform.value['capacidad'];
-
+       
     // metodo de guardar
     this.serviceAgregarVehiculo.guardarVehi(vehiculo).subscribe(() => {
       this.Vehform.reset();

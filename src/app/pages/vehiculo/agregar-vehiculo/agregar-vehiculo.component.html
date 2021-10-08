@@ -1,17 +1,22 @@
 <!--submit para enviar los datos-->
-<form [formGroup]="Vehform" #formVehiculo="ngForm" (ngSubmit)="guardar()">
+<form
+  [formGroup]="Vehform"
+  #formVehiculo="ngForm"
+  (ngSubmit)="guardar()"
+  class="container"
+>
   <table class="example-full-width" cellspacing="0">
     <tr>
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Placa</mat-label>
-          <input matInput placeholder="Placa" formControlName="placa"/>
+          <input matInput placeholder="Placa" formControlName="placa" />
         </mat-form-field>
       </td>
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Modelo</mat-label>
-          <input matInput placeholder="Modelo" formControlName="modelo"/>
+          <input matInput placeholder="Modelo" formControlName="modelo" />
         </mat-form-field>
       </td>
     </tr>
@@ -22,13 +27,22 @@
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Marca</mat-label>
-          <input matInput placeholder="Marca" formControlName="marca"/>
+          <mat-select formControlName="marca" [(ngModel)]="selected">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let pos of positions" [value]="pos.value">
+              {{pos.value}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </td>
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Tipo vehículo</mat-label>
-          <input matInput placeholder="tipo Vehículo" formControlName="tipoVehiuclo"/>
+          <input
+            matInput
+            placeholder="tipo Vehículo"
+            formControlName="tipoVehiuclo"
+          />
         </mat-form-field>
       </td>
     </tr>
@@ -39,10 +53,9 @@
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Capacidad</mat-label>
-          <input matInput placeholder="Capacidad" formControlName="capacidad"/>
+          <input matInput placeholder="Capacidad" formControlName="capacidad" />
         </mat-form-field>
       </td>
-      
     </tr>
   </table>
 
