@@ -37,12 +37,13 @@
       </td>
       <td>
         <mat-form-field class="example-full-width">
-          <mat-label>Tipo vehículo</mat-label>
-          <input
-            matInput
-            placeholder="tipo Vehículo"
-            formControlName="tipoVehiuclo"
-          />
+          <mat-label>Tipo Vehículo</mat-label>
+          <mat-select formControlName="tipoVehiuclo" [(ngModel)]="selTipo">
+            <mat-option>None</mat-option>
+            <mat-option *ngFor="let tip of tipVeh" [value]="tip.tipo">
+              {{tip.tipo}}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
       </td>
     </tr>

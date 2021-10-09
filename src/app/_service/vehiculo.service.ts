@@ -26,4 +26,8 @@ export class VehiculoService {
     return this.http.get<Vehiculo>(`${this.url}/listar/${idVehiculo}`);
   }
 
+  editar(vehiculo: Vehiculo){
+    return this.http.put(`${this.url}/editar`, vehiculo);
+  }
+
 }
