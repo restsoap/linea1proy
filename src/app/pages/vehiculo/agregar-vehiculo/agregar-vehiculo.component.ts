@@ -57,7 +57,8 @@ export class AgregarVehiculoComponent implements OnInit {
     private serviceAgregarVehiculo: VehiculoService,
     private router: Router,
     private fb: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -77,7 +78,11 @@ export class AgregarVehiculoComponent implements OnInit {
   iniciarVacio() {
     this.Vehform = new FormGroup({
       'placa': new FormControl('', [Validators.required]),
-      'modelo': new FormControl(0, [Validators.required]),
+      'modelo': new FormControl(null, [
+        Validators.required,
+        Validators.min(1900),
+        Validators.max(2022)
+      ]),
       'marca': new FormControl('', [Validators.required]),
       'tipoVehiuclo': new FormControl('', [Validators.required]),
       'capacidad': new FormControl('', [Validators.required]),
@@ -135,5 +140,13 @@ export class AgregarVehiculoComponent implements OnInit {
   }
   get capacidad() {
     return this.Vehform.get('capacidad');
+  }
+
+  openSnackBar(mensaje: string) {
+    this.snackBar.open(mensaje, 'info', {
+      duration: 2000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top'
+    });
   }
 }
