@@ -35,25 +35,28 @@ export class ErrorInterceptorService implements HttpInterceptor {
           this.openSnackBar('Placa ya se encuentra registrada');
           // 404, 405 y 415 redirigir a una pagina que diga ha ocurrido un error, comuniquese con el administrador
         } else if (err.error.status === 404) {
-          this.openSnackBar(err.error.message);
+          // this.openSnackBar(err.error.message);
+          this.router.navigate(['/Errora']);
           // 405 y 415 no tienen que pasar
         } else if (err.error.status === 405) {
-          this.openSnackBar(err.error.message);
+          this.router.navigate(['/Errora']);
+          // this.openSnackBar(err.error.message);
         } else if (err.error.status === 415) {
-          this.openSnackBar(err.error.message);
+          this.router.navigate(['/Errora']);
+          // this.openSnackBar(err.error.message);
         } else if (err.error.status === 500) {
           this.router.navigate(['/Error']);
         }
         return EMPTY;
       }));
-
   }
 
   private openSnackBar(mensaje: string) {
-    this.snackBar.open(mensaje, 'Información', {
-      duration: 2000,
+    this.snackBar.open(mensaje, '', {
+      duration: 3000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
+      panelClass: ['snack-error']
     });
   }
 }

@@ -20,6 +20,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ErrorInterceptorService } from './_share/error-interceptor.service';
 import { NotOkComponent } from './pages/not-ok/not-ok.component';
 import { InterceptorService } from './loader/interceptor.service';
+import { ErrorAComponent } from './pages/error-a/error-a.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { InterceptorService } from './loader/interceptor.service';
     VehiculoComponent,
     AgregarVehiculoComponent,
     NotFoundComponent,
-    NotOkComponent
+    NotOkComponent,
+    ErrorAComponent
   ],
   imports: [
     BrowserModule,

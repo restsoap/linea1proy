@@ -6,6 +6,7 @@ import { Ciudad } from 'src/app/_model/Ciudad';
 import { Departamento } from 'src/app/_model/Departamento';
 import { DepartamentoService } from 'src/app/_service/departamento.service';
 import { ActivatedRoute } from '@angular/router';
+import { BarraDeProgresoService } from 'src/app/_service/barra-de-progreso.service';
 
 @Component({
   selector: 'app-departamento',
@@ -22,14 +23,19 @@ export class DepartamentoComponent implements OnInit {
   //para el ordenamiento
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private departamentoService: DepartamentoService,
-    public route: ActivatedRoute) {}
+  constructor(
+    private departamentoService: DepartamentoService,
+    public route: ActivatedRoute,
+    private barraDeProgresoService: BarraDeProgresoService
+    ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.barraDeProgresoService.progressBarReactiva.next(false);
     this.departamentoService.listar().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.barraDeProgresoService.progressBarReactiva.next(true);
     });
   }
 

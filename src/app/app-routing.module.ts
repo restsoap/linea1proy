@@ -9,6 +9,7 @@ import { VehiculoComponent } from './pages/vehiculo/vehiculo.component';
 import { AgregarVehiculoComponent } from './pages/vehiculo/agregar-vehiculo/agregar-vehiculo.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NotOkComponent } from './pages/not-ok/not-ok.component';
+import { ErrorAComponent } from './pages/error-a/error-a.component';
 
 
 const routes: Routes = [
@@ -26,6 +27,7 @@ const routes: Routes = [
   ]
   },
   // pagina no encontrada
+  {path: 'Errora', component: ErrorAComponent},
   {path: 'Error', component: NotOkComponent},
   {path: '**', component: NotFoundComponent}
 ];

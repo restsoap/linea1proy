@@ -14,6 +14,7 @@ export class DepartamentoService {
   constructor(private http: HttpClient) { }
 
   public listar() {
+    // return this.http.post<Departamento[]>(`${this.url}/listar`);
     return this.http.get<Departamento[]>(`${this.url}/listar`);
   }
 

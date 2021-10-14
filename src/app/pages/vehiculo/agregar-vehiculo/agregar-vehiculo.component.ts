@@ -9,6 +9,7 @@ import { VehiculoService } from 'src/app/_service/vehiculo.service';
 import { Vehiculo } from 'src/app/_model/Vehiculo';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { BarraDeProgresoService } from 'src/app/_service/barra-de-progreso.service';
 
 @Component({
   selector: 'app-agregar-vehiculo',
@@ -22,21 +23,26 @@ export class AgregarVehiculoComponent implements OnInit {
 
   // cargar el select
   positions = [
-    { value: 'Chevrolet' },
-    { value: 'Ford' },
-    { value: 'Kia' },
-    { value: 'Mazda' },
-    { value: 'Nissan' },
     { value: 'Toyota' },
+    { value: 'Chevrolet' },
+    { value: 'Renault' },
+    { value: 'Mazda' },
+    { value: 'Mercedes' },
+    { value: 'BMW' },
+    { value: 'Alfa Romeo' },
+    { value: 'Audi' },
+    { value: 'Ferrari' },
+    { value: 'Peugeot' },
+    { value: 'Porsche' },
   ];
 
   // select de tipo de vehículo
   tipVeh = [
-    { tipo: 'Automóvil' },
+    { tipo: 'Carro' },
     { tipo: 'Camioneta' },
+    { tipo: 'Deportivo' },
     { tipo: 'Campero' },
-    { tipo: 'Camión' },
-    { tipo: 'Tractocamión' },
+    { tipo: 'Furgon' }
   ];
 
   Vehform = this.fb.group({
@@ -58,14 +64,17 @@ export class AgregarVehiculoComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private barraDeProgresoService: BarraDeProgresoService
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
+      this.barraDeProgresoService.progressBarReactiva.next(false);
       this.idV = params['idVehiculo'];
       // si llega el id edicion es verdadera
       this.edicion = params['idVehiculo'] != null;
+      this.barraDeProgresoService.progressBarReactiva.next(true);
     });
 
     this.iniciarVacio();
@@ -74,23 +83,31 @@ export class AgregarVehiculoComponent implements OnInit {
     }
   }
 
-  // resetear el formulario
+  // resetear el formulario y validarlo
   iniciarVacio() {
     this.Vehform = new FormGroup({
-      'placa': new FormControl('', [Validators.required]),
+      'placa': new FormControl('', [
+        Validators.required,
+        Validators.pattern(/[a-zA-Z]{3}[-]\d{3}/)
+      ]),
       'modelo': new FormControl(null, [
         Validators.required,
         Validators.min(1900),
-        Validators.max(2022)
+        Validators.max(2022),
+        Validators.pattern(/\d{4}/)
       ]),
       'marca': new FormControl('', [Validators.required]),
       'tipoVehiuclo': new FormControl('', [Validators.required]),
-      'capacidad': new FormControl('', [Validators.required]),
+      'capacidad': new FormControl('', [
+        Validators.required,
+        Validators.pattern(/\d{1,5}[kK][gG]/)
+      ])
     });
   }
 
   // cargar datos al formulario
   cargarData() {
+    this.barraDeProgresoService.progressBarReactiva.next(false);
     this.serviceAgregarVehiculo.listarIdVehiculo(this.idV).subscribe((data) => {
       console.log(data);
       this.Vehform.get('placa').setValue(data.placa);
@@ -98,6 +115,7 @@ export class AgregarVehiculoComponent implements OnInit {
       this.Vehform.get('marca').setValue(data.marca);
       this.Vehform.get('tipoVehiuclo').setValue(data.tipoVehiuclo);
       this.Vehform.get('capacidad').setValue(data.capacidad);
+      this.barraDeProgresoService.progressBarReactiva.next(true);
     });
   }
 
@@ -113,14 +131,20 @@ export class AgregarVehiculoComponent implements OnInit {
     if (this.edicion === true) {
       vehiculo.idVehiculo = this.idV;
       this.serviceAgregarVehiculo.editar(vehiculo).subscribe(() => {
+        this.barraDeProgresoService.progressBarReactiva.next(false);
         this.Vehform.reset();
+        this.openSnackBarr('Editado correctamente');
         this.router.navigate(['/vehiculo']);
+        this.barraDeProgresoService.progressBarReactiva.next(true);
       });
     } else {
       // metodo de guardar
+      this.barraDeProgresoService.progressBarReactiva.next(false);
       this.serviceAgregarVehiculo.guardarVehi(vehiculo).subscribe(() => {
         this.Vehform.reset();
+        this.openSnackBarr('Guardado correctamente');
         this.router.navigate(['/vehiculo']);
+        this.barraDeProgresoService.progressBarReactiva.next(true);
       });
     }
   }
@@ -142,11 +166,12 @@ export class AgregarVehiculoComponent implements OnInit {
     return this.Vehform.get('capacidad');
   }
 
-  openSnackBar(mensaje: string) {
-    this.snackBar.open(mensaje, 'info', {
+  openSnackBarr(mensaje: string) {
+    this.snackBar.open(mensaje, '', {
       duration: 2000,
       horizontalPosition: 'center',
-      verticalPosition: 'top'
+      verticalPosition: 'top',
+      panelClass: ['snak-correct']
     });
   }
 }
