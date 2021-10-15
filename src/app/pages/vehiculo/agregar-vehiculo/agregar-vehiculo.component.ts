@@ -88,7 +88,7 @@ export class AgregarVehiculoComponent implements OnInit {
     this.Vehform = new FormGroup({
       'placa': new FormControl('', [
         Validators.required,
-        Validators.pattern(/[a-zA-Z]{3}[-]\d{3}/)
+        Validators.pattern(/[A-Z]{3}[-]\d{3}/)
       ]),
       'modelo': new FormControl(null, [
         Validators.required,

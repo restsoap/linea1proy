@@ -10,7 +10,7 @@
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Placa</mat-label>
-          <input matInput placeholder="Placa" formControlName="placa" maxlength="7" pattern="[a-zA-Z]{3}[-]\d{3}" oninput="this.value = this.value.toUpperCase()"/>
+          <input matInput placeholder="Placa" formControlName="placa" maxlength="7" pattern="[A-Z]{3}[-]\d{3}" oninput="this.value = this.value.toUpperCase()"/>
           <mat-error *ngIf="placa.invalid && placa.errors.required" placeholder="Placa">Placa requerida</mat-error>
           <mat-error *ngIf="placa.invalid && placa.errors.pattern">Placa invalida</mat-error>
         </mat-form-field>
