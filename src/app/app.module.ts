@@ -21,6 +21,7 @@ import { ErrorInterceptorService } from './_share/error-interceptor.service';
 import { NotOkComponent } from './pages/not-ok/not-ok.component';
 import { InterceptorService } from './loader/interceptor.service';
 import { ErrorAComponent } from './pages/error-a/error-a.component';
+import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ErrorAComponent } from './pages/error-a/error-a.component';
     AgregarVehiculoComponent,
     NotFoundComponent,
     NotOkComponent,
-    ErrorAComponent
+    ErrorAComponent,
+    NotAllowedComponent
   ],
   imports: [
     BrowserModule,
