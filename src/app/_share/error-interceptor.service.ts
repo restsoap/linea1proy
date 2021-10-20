@@ -34,7 +34,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
         if (err.error.status === 400 && err.error.message === "----Placa ya se encuentra registrada.") {
           this.openSnackBar('Placa ya se encuentra registrada');
           // 404, 405 y 415 redirigir a una pagina que diga ha ocurrido un error, comuniquese con el administrador
-        }else if (err.status === 401){
+        }else if (err.status == 401){
           this.router.navigate(['/nopermiso']);
         }
         else if (err.error.status === 404) {

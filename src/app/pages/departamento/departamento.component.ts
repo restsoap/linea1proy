@@ -39,7 +39,7 @@ export class DepartamentoComponent implements OnInit {
     });
   }
 
-  //metodo para aplicar el filtro a un data table
+  // metodo para aplicar el filtro a un data table
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }

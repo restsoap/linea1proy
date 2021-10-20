@@ -11,6 +11,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NotOkComponent } from './pages/not-ok/not-ok.component';
 import { ErrorAComponent } from './pages/error-a/error-a.component';
 import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
+import { LoginComponent } from './pages/login/login.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   ]
   },
   // pagina no encontrada
+  {path: 'login', component: LoginComponent},
   {path: 'Errora', component: ErrorAComponent},
   {path: 'Error', component: NotOkComponent},
   {path: 'nopermiso', component: NotAllowedComponent},
