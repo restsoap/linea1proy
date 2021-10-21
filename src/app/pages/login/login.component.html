@@ -1,1 +1,43 @@
-<p>Desde aca comienza el componente login!</p>
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+      <br />
+    </mat-card-header>
+    <mat-card-content>
+      <div align="center">
+        <img src="assets/user.png " width="100" height="100" />
+      </div>
+
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="usuario"
+            [(ngModel)]="usuario"
+            maxlength="7"
+          />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Contraseña"
+            [(ngModel)]="contrasena"
+            type="password"
+            minlength="6"
+            maxlength="15"
+          />
+        </mat-form-field>
+        <mat-card-actions>
+          <button
+            mat-raised-button
+            (click)="login()"
+            color="accent"
+            type="submit"
+          >
+            Ingresar
+          </button>
+        </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+</div>
