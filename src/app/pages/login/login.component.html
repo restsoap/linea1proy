@@ -10,41 +10,35 @@
       </div>
 
         <mat-form-field>
+          <mat-label>Usuario</mat-label>
           <input
             matInput
-            #modelInput
             placeholder="usuario"
-            [ngModel]="usuario"
-            (ngModelChange)="valida"
-            minlength="3"
-            maxlength="7"
+            [(ngModel)]="usuario"
             required
           />
         </mat-form-field>
         <br />
         <mat-form-field>
+          <mat-label>Contraseña</mat-label>
           <input
             matInput
-            #modelInput
             placeholder="Contraseña"
             [(ngModel)]="contrasena"
-            (ngModelChange)="validapass"
             type="password"
             minlength="6"
             maxlength="15"
           />
         </mat-form-field>
-        <mat-card-actions>
+        
           <button
             mat-raised-button
             (click)="login()"
-            [disabled]="modelIsvalid && modelIsValid"
             color="accent"
-            type="submit"
           >
             Ingresar
           </button>
-        </mat-card-actions>
+        
     </mat-card-content>
   </mat-card>
 </div>

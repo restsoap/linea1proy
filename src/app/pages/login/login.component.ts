@@ -10,33 +10,18 @@ import { LoginService } from '../../_service/login.service';
 })
 export class LoginComponent implements OnInit {
 
+  // variables de usuario
+  usuario: string;
+  contrasena: string;
+
   constructor(private loginService: LoginService,
               public fb: FormBuilder) { }
-
-  // variables de usuario
-  usuario: string = '';
-  contrasena: string = '';
-
-  modelIsvalid: boolean = false;
-  modelIsValid: boolean = false;
-
-  valida(usu: string){
-    this.modelIsvalid = !!usu && usu.length > 3 
-  }
-
-  validapass(cotra: string){
-    this.modelIsValid = !!cotra && cotra.length > 3
-  }
 
   ngOnInit(): void {
   }
 
-  
 
-  login() {
-    //'admin'    '123456'
-    this.loginService.login(this.usuario, this.contrasena).subscribe(data => {
-      // console.log(data);
+  // console.log(data);
       // se almacenan los datos en el navegador con:
       // localStorage
 
@@ -45,6 +30,13 @@ export class LoginComponent implements OnInit {
       console.log(decodedToken);*/
 
       // Para almacenar en la memoria del navegador
+      /*const helper = new JwtHelperService();
+      const decodedToken = helper.decodeToken(data.access_token);
+      console.log(decodedToken);*/
+
+  login() {
+    // 'admin'    '123456'
+    this.loginService.login(this.usuario, this.contrasena).subscribe(data => {
       sessionStorage.setItem(environment.TOKEN, data.access_token);
     });
   }
