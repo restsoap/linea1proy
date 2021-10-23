@@ -14,19 +14,28 @@ export class LoginComponent implements OnInit {
               public fb: FormBuilder) { }
 
   // variables de usuario
-  usuario: string;
-  contrasena: string;
+  usuario: string = '';
+  contrasena: string = '';
 
-  loginf = this.fb.group({
-    usuario: ['', Validators.required],
-    contrasena: ['', Validators.required]
-  });
+  modelIsvalid: boolean = false;
+  modelIsValid: boolean = false;
+
+  valida(usu: string){
+    this.modelIsvalid = !!usu && usu.length > 3 
+  }
+
+  validapass(cotra: string){
+    this.modelIsValid = !!cotra && cotra.length > 3
+  }
 
   ngOnInit(): void {
   }
 
+  
+
   login() {
-    this.loginService.login('admin', '123456').subscribe(data => {
+    //'admin'    '123456'
+    this.loginService.login(this.usuario, this.contrasena).subscribe(data => {
       // console.log(data);
       // se almacenan los datos en el navegador con:
       // localStorage

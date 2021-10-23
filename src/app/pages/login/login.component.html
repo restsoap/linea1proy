@@ -12,17 +12,23 @@
         <mat-form-field>
           <input
             matInput
+            #modelInput
             placeholder="usuario"
-            [(ngModel)]="usuario"
+            [ngModel]="usuario"
+            (ngModelChange)="valida"
+            minlength="3"
             maxlength="7"
+            required
           />
         </mat-form-field>
         <br />
         <mat-form-field>
           <input
             matInput
+            #modelInput
             placeholder="Contraseña"
             [(ngModel)]="contrasena"
+            (ngModelChange)="validapass"
             type="password"
             minlength="6"
             maxlength="15"
@@ -32,6 +38,7 @@
           <button
             mat-raised-button
             (click)="login()"
+            [disabled]="modelIsvalid && modelIsValid"
             color="accent"
             type="submit"
           >
