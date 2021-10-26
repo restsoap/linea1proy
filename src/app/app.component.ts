@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { LoaderService } from './loader/loader.service';
 import { BarraDeProgresoService } from './_service/barra-de-progreso.service'
 
@@ -13,7 +14,8 @@ export class AppComponent implements OnInit{
 
   constructor(
     public loaderService: LoaderService,
-    private barraDeProgresoService: BarraDeProgresoService
+    private barraDeProgresoService: BarraDeProgresoService,
+    public route: ActivatedRoute
   ){}
 
   ngOnInit(): void {

@@ -1,22 +1,25 @@
-<div class="container">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Login</mat-card-title>
-      <br />
-    </mat-card-header>
-    <mat-card-content>
-      <div align="center">
-        <img src="assets/user.png " width="100" height="100" />
-      </div>
+<div class="container" [hidden]="route.children.length !== 0 " id="login">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+        <br />
+      </mat-card-header>
+      <mat-card-content>
+        <div align="center">
+          <img src="assets/user.png " width="100" height="100" />
+        </div>
 
         <mat-form-field>
           <mat-label>Usuario</mat-label>
           <input
             matInput
             placeholder="usuario"
-            [(ngModel)]="usuario"
-            required
+            [formControl]="usuario"
           />
+          <mat-error *ngIf="usuario.invalid && usuario.errors.required">Usuario requerido</mat-error>
+          <mat-error *ngIf="usuario.invalid && usuario.errors.minLength">Mínimo 3 caracteres </mat-error>
+          <mat-error *ngIf="usuario.invalid && usuario.errors.minLength">Máximo 7 caracteres </mat-error>
+          <mat-error *ngIf="usuario.invalid && usuario.errors.pattern">Solo se aceptan letras y números</mat-error>
         </mat-form-field>
         <br />
         <mat-form-field>
@@ -24,21 +27,18 @@
           <input
             matInput
             placeholder="Contraseña"
-            [(ngModel)]="contrasena"
+            [formControl]="contrasena"
             type="password"
-            minlength="6"
-            maxlength="15"
           />
+          <mat-error *ngIf="contrasena.invalid && contrasena.errors.required">Contraseña requerida</mat-error>
+          <mat-error *ngIf="contrasena.invalid && contrasena.errors.minLength">Mínimo 3 caracteres </mat-error>
+          <mat-error *ngIf="contrasena.invalid && contrasena.errors.minLength">Máximo 15 caracteres </mat-error>
+          <mat-error *ngIf="contrasena.invalid && contrasena.errors.pattern">Solo se aceptan letras y números</mat-error>
         </mat-form-field>
-        
-          <button
-            mat-raised-button
-            (click)="login()"
-            color="accent"
-          >
-            Ingresar
-          </button>
-        
-    </mat-card-content>
-  </mat-card>
+
+        <button mat-raised-button (click)="login()" color="accent" [disabled]="!usuario.valid && !contrasena.valid">
+          Ingresar
+        </button>
+      </mat-card-content>
+    </mat-card>
 </div>
