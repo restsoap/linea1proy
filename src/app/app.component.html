@@ -1,7 +1,7 @@
 <div class="example-container">
 
   <!--[hidden]="route.children.length !== 0 " -->
-  <div>
+  <div *ngIf="isLoggedIn$ | async as isLoggedIn">
     <mat-toolbar color="accent" class="example-toolbar" > 
       
       <button mat-icon-button (click)="drawer.toggle()">
@@ -21,7 +21,7 @@
                   <mat-icon>account_box</mat-icon>
                   <span>Mi Perfil</span>
               </button>
-              <button mat-menu-item >
+              <button mat-menu-item (click)="onLogout()" *ngIf="isLoggedIn$ | async">
                   <mat-icon>exit_to_app</mat-icon>
                   <span>Cerrar Sesión</span>
               </button>
