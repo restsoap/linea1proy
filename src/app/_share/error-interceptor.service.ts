@@ -32,9 +32,11 @@ export class ErrorInterceptorService implements HttpInterceptor {
         // aquí se ponen todos los filtros cuando ocurra un error
         console.log(err);
         if (err.status === 400 && err.error.error_description === "Bad credentials"){
-          this.openSnackBar('Usuario o contraseña incorrectos');
+          this.openSnackBar('Credenciales incorrectas');
+          this.router.navigate(['/login']);
         }else if (err.status === 401 && err.error.error_description === "----Nick o password incorecto"){
           this.openSnackBar('Usuario o contraseña incorrecta');
+          this.router.navigate(['/login']);
         }else if (err.error.status === 400 && err.error.message === "----Placa ya se encuentra registrada.") {
           this.openSnackBar('Placa ya se encuentra registrada');
           // 404, 405 y 415 redirigir a una pagina que diga ha ocurrido un error, comuniquese con el administrador
