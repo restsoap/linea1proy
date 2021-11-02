@@ -13,7 +13,7 @@ export class AppComponent implements OnInit{
 
   public flacProgressBar: boolean = true;
 
-  isLoggedIn$: Observable<boolean>;
+  public flagToolbar: boolean = true;
 
   constructor(
     private barraDeProgresoService: BarraDeProgresoService,
@@ -22,12 +22,22 @@ export class AppComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
+
+    if(this.logService.estaLogueado() == true){
+      this.flagToolbar = false;
+    }else{
+      this.flagToolbar = true;
+    }
+
+    this.logService.toolbarReactiva.subscribe(data => {
+      this.flagToolbar = data;
+    });
+
     this.barraDeProgresoService.progressBarReactiva.subscribe(data => {
       this.flacProgressBar = data;
       // this.flacProgressBar = !this.flacProgressBar;
     });
   }
-
 
   onLogout() {
     this.logService.cerrarSesion();

@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+
+  public toolbarReactiva = new Subject<boolean>();
 
   private url: string = `${environment.HOST}/oauth/token`;
 
@@ -29,6 +31,7 @@ export class LoginService {
     this.http.get(`${environment.HOST}/cerrarSesion/anular/${tk}`).subscribe(data => {
       sessionStorage.clear();
       this.router.navigate(['login']);
+      this.toolbarReactiva.next(true);
     });
   }
 
