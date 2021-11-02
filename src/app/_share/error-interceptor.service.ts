@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { tap, catchError, retry } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { BarraDeProgresoService } from '../_service/barra-de-progreso.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class ErrorInterceptorService implements HttpInterceptor {
 
   constructor(
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private barraDeProgresoService: BarraDeProgresoService
   ) { }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
@@ -29,13 +31,16 @@ export class ErrorInterceptorService implements HttpInterceptor {
         }*/
         }
       })).pipe(catchError((err) => {
+
+        this.barraDeProgresoService.progressBarReactiva.next(true);
+
         // aquí se ponen todos los filtros cuando ocurra un error
         console.log(err);
         if (err.status === 400 && err.error.error_description === "Bad credentials"){
-          this.openSnackBar('Credenciales incorrectas');
+          this.openSnackBar('Contraseña incorrecta');
           this.router.navigate(['/login']);
         }else if (err.status === 401 && err.error.error_description === "----Nick o password incorecto"){
-          this.openSnackBar('Usuario o contraseña incorrecta');
+          this.openSnackBar('Usuario incorrecto');
           this.router.navigate(['/login']);
         }else if (err.error.status === 400 && err.error.message === "----Placa ya se encuentra registrada.") {
           this.openSnackBar('Placa ya se encuentra registrada');

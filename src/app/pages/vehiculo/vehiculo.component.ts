@@ -18,11 +18,11 @@ export class VehiculoComponent implements OnInit {
   dataSource = new MatTableDataSource<Vehiculo>();
   @ViewChild(MatSort) sort: MatSort;
 
-  //variables para el paginador 
+  // variables para el paginador 
   cantidad: number;
-  //desde la pagina 0
+  // desde la pagina 0
   pageIndex: number = 0;
-  //tamaño paginador 
+  // tamaño paginador 
   pageSize: number = 5;
 
   constructor(
@@ -36,9 +36,9 @@ export class VehiculoComponent implements OnInit {
   }
 
   cambiarPagina(e: any){
-    //indice de pagina
+    // indice de pagina
     this.pageIndex = e.pageIndex;
-    //tamaño de paginado
+    // tamaño de paginado
     this.pageSize = e.pageSize;
     this.listarPaginado();
   }
@@ -53,7 +53,7 @@ export class VehiculoComponent implements OnInit {
     });
   }
 
-  //metodo para aplicar el filtro a un data table
+  // metodo para aplicar el filtro a un data table
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }

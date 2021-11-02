@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 })
 export class BarraDeProgresoService {
 
-  progressBarReactiva = new Subject<Boolean>();
+  progressBarReactiva = new Subject<boolean>();
 
   constructor() { }
 }

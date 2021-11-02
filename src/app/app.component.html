@@ -1,7 +1,8 @@
 <div class="example-container">
 
   <!--[hidden]="route.children.length !== 0 " -->
-  <div *ngIf="isLoggedIn$ | async as isLoggedIn">
+  <!--*ngIf="isLoggedIn$ | async as isLoggedIn"-->
+  <div >
     <mat-toolbar color="accent" class="example-toolbar" > 
       
       <button mat-icon-button (click)="drawer.toggle()">

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { LoaderService } from './loader/loader.service';
 import { BarraDeProgresoService } from './_service/barra-de-progreso.service';
 import { LoginService } from './_service/login.service';
 
@@ -17,7 +16,6 @@ export class AppComponent implements OnInit{
   isLoggedIn$: Observable<boolean>;
 
   constructor(
-    public loaderService: LoaderService,
     private barraDeProgresoService: BarraDeProgresoService,
     public route: ActivatedRoute,
     public logService: LoginService
@@ -25,9 +23,8 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
     this.barraDeProgresoService.progressBarReactiva.subscribe(data => {
-      // this.flacProgressBar = data;
-      this.flacProgressBar = !this.flacProgressBar;
-      this.isLoggedIn$ = this.logService.isLoggedIn;
+      this.flacProgressBar = data;
+      // this.flacProgressBar = !this.flacProgressBar;
     });
   }
 

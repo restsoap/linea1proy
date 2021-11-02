@@ -16,7 +16,6 @@ import { AgregarVehiculoComponent } from './pages/vehiculo/agregar-vehiculo/agre
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ErrorInterceptorService } from './_share/error-interceptor.service';
 import { NotOkComponent } from './pages/not-ok/not-ok.component';
-import { InterceptorService } from './loader/interceptor.service';
 import { ErrorAComponent } from './pages/error-a/error-a.component';
 import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
 import { environment } from 'src/environments/environment';
@@ -61,11 +60,6 @@ export function tokenGetter() {
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptorService,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: InterceptorService,
       multi: true
     }
   ],
