@@ -20,6 +20,7 @@ import { ErrorAComponent } from './pages/error-a/error-a.component';
 import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
 import { environment } from 'src/environments/environment';
 import { JwtModule } from '@auth0/angular-jwt';
+import { UsuarioComponent } from './pages/usuario/usuario.component';
 
 export function tokenGetter() {
   let tk = sessionStorage.getItem(environment.TOKEN);
@@ -38,7 +39,8 @@ export function tokenGetter() {
     NotFoundComponent,
     NotOkComponent,
     ErrorAComponent,
-    NotAllowedComponent
+    NotAllowedComponent,
+    UsuarioComponent
   ],
   imports: [
     BrowserModule,

@@ -9,21 +9,24 @@ import { NotOkComponent } from './pages/not-ok/not-ok.component';
 import { ErrorAComponent } from './pages/error-a/error-a.component';
 import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
 import { LoginComponent } from './pages/login/login.component';
+import { UsuarioComponent } from './pages/usuario/usuario.component';
+import { GuardianService } from './_share/guardian.service';
 
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'departamento', component: DepartamentoComponent, children :[
-      {path:  'ciudad/:idDep', component: CiudadComponent}
-    ]
+  {path: 'departamento', component: DepartamentoComponent, children : [
+      {path:  'ciudad/:idDep', component: CiudadComponent, canActivate: [GuardianService]}
+    ], canActivate: [GuardianService]
   },
   {path: 'vehiculo', component: VehiculoComponent, children: [
-    {path: 'agregarvehiculo', component: AgregarVehiculoComponent },
-    {path: 'edicion/:idVehiculo', component: AgregarVehiculoComponent}
-  ]
+    {path: 'agregarvehiculo', component: AgregarVehiculoComponent, canActivate: [GuardianService] },
+    {path: 'edicion/:idVehiculo', component: AgregarVehiculoComponent, canActivate: [GuardianService]}
+  ], canActivate: [GuardianService]
   },
   // pagina no encontrada
   {path: 'login', component: LoginComponent},
+  {path: 'usuario', component: UsuarioComponent, canActivate: [GuardianService]},
   {path: 'Errora', component: ErrorAComponent},
   {path: 'Error', component: NotOkComponent},
   {path: 'nopermiso', component: NotAllowedComponent},

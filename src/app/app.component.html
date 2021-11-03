@@ -40,6 +40,7 @@
 
         <img src="assets/udec_escudo.png" width="128" style="margin-left: 20px;" />
   
+        <!-- 
         <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/buscar']">
             <mat-icon>search</mat-icon>
             <span>Buscar</span>
@@ -57,6 +58,7 @@
           <span>Editar</span>
         </button>
         <mat-divider></mat-divider>  
+        -->
 
         <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/departamento']">
           <mat-icon>room</mat-icon>
@@ -69,6 +71,12 @@
           <span>Vehículo</span>
         </button>
         <mat-divider></mat-divider>  
+
+        <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/usuario']">
+          <mat-icon>account_circle</mat-icon>
+          <span>Usuario</span>
+        </button>
+        <mat-divider></mat-divider>
       
     </mat-drawer>
 
