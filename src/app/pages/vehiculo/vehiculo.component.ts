@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
@@ -13,7 +13,7 @@ import {VehiculoService} from './../../_service/vehiculo.service';
   styleUrls: ['./vehiculo.component.css']
 })
 
-export class VehiculoComponent implements OnInit {
+export class VehiculoComponent implements OnInit, OnDestroy {
 
   // creamos una suscripción
   suscripcion: Subscription;
@@ -40,6 +40,12 @@ export class VehiculoComponent implements OnInit {
     this.suscripcion = this.serviceVehiculo.refresh.subscribe(() => {
       this.listarPaginado();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.suscripcion.unsubscribe();
+    // para evitar el consumo de memoria
+    console.log("observable cerrado");
   }
 
   cambiarPagina(e: any){

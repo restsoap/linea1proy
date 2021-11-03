@@ -42,6 +42,12 @@ export class VehiculoService {
   }
 
   editar(vehiculo: Vehiculo){
-    return this.http.put(`${this.url}/editar`, vehiculo);
+    return this.http
+    .put(`${this.url}/editar`, vehiculo)
+    .pipe(
+      tap(() =>  {
+        this._refresh$.next();
+      })
+    );
   }
 }
