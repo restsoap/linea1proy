@@ -54,11 +54,9 @@ export class GuardianService implements CanActivate {
         return false;
       }
 
-      return true;
     } else {
       this.router.navigate(['/nopermiso']);
       return false;
     }
-    return true;
   }
 }

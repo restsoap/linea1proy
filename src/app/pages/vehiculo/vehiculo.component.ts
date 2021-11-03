@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Vehiculo} from 'src/app/_model/Vehiculo';
 import { BarraDeProgresoService } from 'src/app/_service/barra-de-progreso.service';
 import {VehiculoService} from './../../_service/vehiculo.service';
@@ -13,6 +14,9 @@ import {VehiculoService} from './../../_service/vehiculo.service';
 })
 
 export class VehiculoComponent implements OnInit {
+
+  // creamos una suscripción
+  suscripcion: Subscription;
 
   displayedColumns: string [] = ['placa', 'modelo', 'marca', 'tipoVehiuclo', 'capacidad', 'ver'];
   dataSource = new MatTableDataSource<Vehiculo>();
@@ -33,6 +37,9 @@ export class VehiculoComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.listarPaginado();
+    this.suscripcion = this.serviceVehiculo.refresh.subscribe(() => {
+      this.listarPaginado();
+    });
   }
 
   cambiarPagina(e: any){
