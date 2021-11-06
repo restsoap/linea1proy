@@ -113,12 +113,15 @@ export class AppComponent implements OnInit {
       const decodedToken = helper.decodeToken(token);
       const rol: String = decodedToken.authorities[0];
 
-      console.log("rol " + rol);
+      // console.log("rol " + rol);
 
-      if (rol === "Administrador"){
+      if (rol === 'Administrador') {
+        console.log('entro admin');
         this.flagbtnDepar = false;
         this.flagbtnvehi = false;
-      }else if (rol === "Conductor"){
+        this.flagbtnusu = false;
+      }else if (rol === 'Conductor') {
+        console.log('entro conduc');
         this.flagbtnusu = false;
       }
     } else {

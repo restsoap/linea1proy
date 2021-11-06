@@ -45,6 +45,9 @@ export class GuardianService implements CanActivate {
         else if (url.includes('usuario') && rol === 'Administrador') {
           return true;
         }
+        else if (url.includes('usuario') && rol === 'Conductor') {
+          return true;
+        }
         else {
           this.router.navigate(['/nopermiso']);
           return false;
