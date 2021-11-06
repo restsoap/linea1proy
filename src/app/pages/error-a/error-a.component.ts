@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-error-a',
@@ -10,7 +9,7 @@ export class ErrorAComponent implements OnInit {
 
   status: '405';
 
-  constructor( ) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

@@ -15,16 +15,17 @@ export class GuardianService implements CanActivate {
     private router: Router,
   ) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
+    boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
 
-    if (this.logService.estaLogueado() == true) {
+    if (this.logService.estaLogueado() === true) {
 
       const helper = new JwtHelperService();
       // traemos el token
       let token = sessionStorage.getItem(environment.TOKEN);
 
       // expiración del token
-      //const isExpired = helper.isTokenExpired(token);
+      // const isExpired = helper.isTokenExpired(token);
       if (!helper.isTokenExpired(token)) {
 
         // token decodificado
@@ -35,19 +36,20 @@ export class GuardianService implements CanActivate {
         // console.log(rol);
         // console.log(url);
 
-        if (url.includes('departamento') && rol == 'Administrador')
+        if (url.includes('departamento') && rol === 'Administrador') {
           return true;
-        else if (url.includes('vehiculo') && rol == 'Administrador')
+        }
+        else if (url.includes('vehiculo') && rol === 'Administrador') {
           return true;
-        else if (url.includes('usuario') && rol == 'Administrador')
+        }
+        else if (url.includes('usuario') && rol === 'Administrador') {
           return true;
-        else{
+        }
+        else {
           this.router.navigate(['/nopermiso']);
           return false;
         }
 
-        // si no ha expirado
-        return true;
       } else {
         // si ya expiro
         this.logService.cerrarSesion();
@@ -55,6 +57,7 @@ export class GuardianService implements CanActivate {
       }
 
     } else {
+      this.logService.toolbarReactiva.next(true);
       this.router.navigate(['/nopermiso']);
       return false;
     }

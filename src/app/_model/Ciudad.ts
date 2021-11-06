@@ -1,7 +1,7 @@
 import { Departamento } from '../_model/Departamento';
 
-export class Ciudad{
+export class Ciudad {
     idCiudad: number;
-    nombre:   string;
+    nombre: string;
     departamento: Departamento;
 }

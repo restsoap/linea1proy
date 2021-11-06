@@ -21,10 +21,12 @@ import { NotAllowedComponent } from './pages/not-allowed/not-allowed.component';
 import { environment } from 'src/environments/environment';
 import { JwtModule } from '@auth0/angular-jwt';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
+import { MomentModule } from 'angular2-moment';
 
 export function tokenGetter() {
   let tk = sessionStorage.getItem(environment.TOKEN);
-  //si existe, se devuelve el token, sino existe devuelve vacio
+  // si existe, se devuelve el token, sino existe devuelve vacio
   return tk != null ? tk : '';
 }
 
@@ -50,6 +52,8 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgIdleKeepaliveModule.forRoot(),
+    MomentModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,

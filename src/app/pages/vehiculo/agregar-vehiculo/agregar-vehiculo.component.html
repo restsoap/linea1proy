@@ -10,19 +10,47 @@
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Placa</mat-label>
-          <input matInput placeholder="Placa" formControlName="placa" maxlength="7" pattern="[A-Z]{3}[-]\d{3}" oninput="this.value = this.value.toUpperCase()"/>
-          <mat-error *ngIf="placa.invalid && placa.errors.required" placeholder="Placa">Placa requerida</mat-error>
-          <mat-error *ngIf="placa.invalid && placa.errors.pattern">Placa invalida</mat-error>
+          <input
+            matInput
+            placeholder="Placa"
+            formControlName="placa"
+            maxlength="7"
+            pattern="[A-Z]{3}[-]\d{3}"
+            oninput="this.value = this.value.toUpperCase()"
+          />
+          <mat-error
+            *ngIf="placa.invalid && placa.errors.required"
+            placeholder="Placa"
+            >Placa requerida</mat-error
+          >
+          <mat-error *ngIf="placa.invalid && placa.errors.pattern"
+            >Placa invalida</mat-error
+          >
         </mat-form-field>
       </td>
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Modelo</mat-label>
-          <input matInput placeholder="Modelo" formControlName="modelo" type="number" maxlength="4" pattern="\d{4}"/>
-          <mat-error *ngIf="modelo.invalid && modelo.errors.required">Modelo requerido</mat-error>
-          <mat-error *ngIf="modelo.invalid && modelo.errors.min">debe ser mayor a 1900</mat-error>
-          <mat-error *ngIf="modelo.invalid && modelo.errors.max">debe ser menor a 2022</mat-error>
-          <mat-error *ngIf="modelo.invalid && modelo.errors.pattern">Solo se aceptan numeros</mat-error>
+          <input
+            matInput
+            placeholder="Modelo"
+            formControlName="modelo"
+            type="number"
+            maxlength="4"
+            pattern="\d{4}"
+          />
+          <mat-error *ngIf="modelo.invalid && modelo.errors.required"
+            >Modelo requerido</mat-error
+          >
+          <mat-error *ngIf="modelo.invalid && modelo.errors.min"
+            >debe ser mayor a 1900</mat-error
+          >
+          <mat-error *ngIf="modelo.invalid && modelo.errors.max"
+            >debe ser menor a 2022</mat-error
+          >
+          <mat-error *ngIf="modelo.invalid && modelo.errors.pattern"
+            >Solo se aceptan numeros</mat-error
+          >
         </mat-form-field>
       </td>
     </tr>
@@ -36,10 +64,12 @@
           <mat-select formControlName="marca" [(ngModel)]="selected">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let pos of positions" [value]="pos.value">
-              {{pos.value}}
+              {{ pos.value }}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="marca.invalid && marca.errors.required">Debe seleccionar una marca</mat-error>
+          <mat-error *ngIf="marca.invalid && marca.errors.required"
+            >Debe seleccionar una marca</mat-error
+          >
         </mat-form-field>
       </td>
       <td>
@@ -48,10 +78,13 @@
           <mat-select formControlName="tipoVehiuclo" [(ngModel)]="selTipo">
             <mat-option>None</mat-option>
             <mat-option *ngFor="let tip of tipVeh" [value]="tip.tipo">
-              {{tip.tipo}}
+              {{ tip.tipo }}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="tipoVehiculo.invalid && tipoVehiculo.errors.required">Debe seleccionar un Tipo de vehículo</mat-error>
+          <mat-error
+            *ngIf="tipoVehiculo.invalid && tipoVehiculo.errors.required"
+            >Debe seleccionar un Tipo de vehículo</mat-error
+          >
         </mat-form-field>
       </td>
     </tr>
@@ -62,9 +95,19 @@
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Capacidad</mat-label>
-          <input matInput placeholder="Capacidad" formControlName="capacidad" maxlength="7" pattern="\d{1,5}[kK][gG]"/>
-          <mat-error *ngIf="capacidad.invalid && capacidad.errors.required">Capacidad requerida</mat-error>
-          <mat-error *ngIf="capacidad.invalid && capacidad.errors.pattern">Capacidad invalida</mat-error>
+          <input
+            matInput
+            placeholder="Capacidad"
+            formControlName="capacidad"
+            maxlength="7"
+            pattern="\d{1,5}[kK][gG]"
+          />
+          <mat-error *ngIf="capacidad.invalid && capacidad.errors.required"
+            >Capacidad requerida</mat-error
+          >
+          <mat-error *ngIf="capacidad.invalid && capacidad.errors.pattern"
+            >Capacidad invalida</mat-error
+          >
         </mat-form-field>
       </td>
     </tr>

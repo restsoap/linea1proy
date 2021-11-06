@@ -1,5 +1,4 @@
 <div class="container" [hidden]="route.children.length !== 0">
-
   <mat-form-field>
     <mat-label>Filtro</mat-label>
     <input
@@ -41,7 +40,7 @@
       <td mat-cell *matCellDef="let element">
         <button
           mat-button
-          color="accent"   
+          color="accent"
           [routerLink]="['/vehiculo/edicion/', element.idVehiculo]"
         >
           <mat-icon>edit_note</mat-icon>
@@ -62,7 +61,7 @@
     (page)="cambiarPagina($event)"
   ></mat-paginator>
 
-  <br>
+  <br />
 
   <button
     mat-fab
@@ -72,7 +71,6 @@
   >
     <mat-icon>add_circle</mat-icon>
   </button>
-
 </div>
 
 <router-outlet></router-outlet>

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { LoginService } from '../../_service/login.service';
@@ -28,11 +28,12 @@ export class LoginComponent implements OnInit {
     ]
   );
 
-  constructor(private loginService: LoginService,
-              public fb: FormBuilder,
-              private router: Router,
-              public route : ActivatedRoute
-              ) { }
+  constructor(
+    private loginService: LoginService,
+    public fb: FormBuilder,
+    private router: Router,
+    public route: ActivatedRoute
+  ) { }
   ngOnInit(): void {
   }
 
@@ -60,5 +61,5 @@ export class LoginComponent implements OnInit {
   }
 
 
-  
+
 }

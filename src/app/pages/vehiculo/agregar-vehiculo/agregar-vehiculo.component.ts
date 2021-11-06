@@ -66,7 +66,7 @@ export class AgregarVehiculoComponent implements OnInit {
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     private barraDeProgresoService: BarraDeProgresoService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {

@@ -22,12 +22,12 @@ export class CiudadComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private departamentoService: DepartamentoService,
-    private router: Router,
-    public route : ActivatedRoute,) {}
+              private router: Router,
+              public route: ActivatedRoute,) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params : Params) => {
-      let idDepartamento = params['idDep']
+    this.route.params.subscribe((params: Params) => {
+      let idDepartamento = params['idDep'];
       this.departamentoService.listarCiudadPorDepartamento(idDepartamento).subscribe((data) => {
         this.dataSourceCiudad = new MatTableDataSource(data);
         this.dataSourceCiudad.paginator = this.citiyPaginator;
@@ -36,7 +36,7 @@ export class CiudadComponent implements OnInit {
     });
   }
 
-  //metodo para aplicar el filtro a un data table
+  // metodo para aplicar el filtro a un data table
   applyFilter(filterValue: string) {
     this.dataSourceCiudad.filter = filterValue.trim().toLocaleLowerCase();
   }

@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { Ciudad } from 'src/app/_model/Ciudad';
 import { Departamento } from 'src/app/_model/Departamento';
 import { DepartamentoService } from 'src/app/_service/departamento.service';
 import { ActivatedRoute } from '@angular/router';
@@ -20,7 +19,7 @@ export class DepartamentoComponent implements OnInit {
 
   @ViewChild('DepartmentPaginator') paginator: MatPaginator;
 
-  //para el ordenamiento
+  // para el ordenamiento
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
