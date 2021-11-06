@@ -60,23 +60,31 @@
         <mat-divider></mat-divider>  
         -->
 
-        <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/departamento']">
-          <mat-icon>room</mat-icon>
-          <span>Departamento</span>
-        </button>
-        <mat-divider></mat-divider>      
+        <div [hidden]="flagbtnDepar">
+          <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/departamento']">
+            <mat-icon>room</mat-icon>
+            <span>Departamento</span>
+          </button>
+          <mat-divider></mat-divider> 
+        </div>    
         
-        <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/vehiculo']">
-          <mat-icon>local_shipping</mat-icon>
-          <span>Vehículo</span>
-        </button>
-        <mat-divider></mat-divider>  
+        <div [hidden]="flagbtnvehi">
+          <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/vehiculo']">
+            <mat-icon>local_shipping</mat-icon>
+            <span>Vehículo</span>
+          </button>
+          <mat-divider></mat-divider>
+        </div>
+          
 
-        <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/usuario']">
-          <mat-icon>account_circle</mat-icon>
-          <span>Usuario</span>
-        </button>
-        <mat-divider></mat-divider>
+        <div [hidden]="flagbtnusu">
+          <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/usuario']">
+            <mat-icon>account_circle</mat-icon>
+            <span>Usuario</span>
+          </button>
+          <mat-divider></mat-divider>
+        </div>
+        
       
     </mat-drawer>
 

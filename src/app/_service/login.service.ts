@@ -11,6 +11,12 @@ export class LoginService {
 
   public toolbarReactiva = new Subject<boolean>();
 
+  public btnDepartReactiv = new Subject<boolean>();
+
+  public btnVehiReactiv = new Subject<boolean>();
+
+  public btnUsuReactiv = new Subject<boolean>();
+
   private loggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   get isLoggedIn() {
@@ -27,6 +33,9 @@ export class LoginService {
   public login(usuario: string, password: string) {
     const body = `grant_type=password&username=${encodeURIComponent(usuario)}&password=${encodeURIComponent(password)}`;
     this.loggedIn.next(true);
+    this.btnDepartReactiv.next(false);
+    this.btnVehiReactiv.next(false);
+    this.btnDepartReactiv.next(false);
     return this.http.post<any>(`${this.url}`, body, {
       headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8').
         set('Authorization', 'Basic ' + btoa(`${environment.TOKEN_AUTH_USERNAME}:${environment.TOKEN_AUTH_PASSWORD}`))

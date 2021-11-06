@@ -45,7 +45,7 @@ export class VehiculoComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.suscripcion.unsubscribe();
     // para evitar el consumo de memoria
-    console.log("observable cerrado");
+    // console.log("observable cerrado");
   }
 
   cambiarPagina(e: any) {

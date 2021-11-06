@@ -5,6 +5,8 @@ import { BarraDeProgresoService } from './_service/barra-de-progreso.service';
 import { LoginService } from './_service/login.service';
 import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
+import { environment } from 'src/environments/environment';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +23,13 @@ export class AppComponent implements OnInit {
   public flacProgressBar: boolean = true;
 
   public flagToolbar: boolean = true;
+
+  // para los botones
+  public flagbtnDepar: boolean = true;
+
+  public flagbtnvehi: boolean = true;
+
+  public flagbtnusu: boolean = true;
 
   isLoggedIn$: Observable<boolean>;
 
@@ -92,11 +101,44 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
 
     if (this.logService.estaLogueado() === true) {
+      // cambiar estado toolbar
       this.flagToolbar = false;
+
+      const helper = new JwtHelperService();
+
+      // traemos el token
+      let token = sessionStorage.getItem(environment.TOKEN);
+
+      // token decodificado
+      const decodedToken = helper.decodeToken(token);
+      const rol: String = decodedToken.authorities[0];
+
+      console.log("rol " + rol);
+
+      if (rol === "Administrador"){
+        this.flagbtnDepar = false;
+        this.flagbtnvehi = false;
+      }else if (rol === "Conductor"){
+        this.flagbtnusu = false;
+      }
     } else {
       this.flagToolbar = true;
     }
 
+    // para los botones
+    this.logService.btnDepartReactiv.subscribe(data => {
+      this.flagbtnDepar = data;
+    });
+
+    this.logService.btnVehiReactiv.subscribe(data => {
+      this.flagbtnvehi = data;
+    });
+
+    this.logService.btnUsuReactiv.subscribe(data => {
+      this.flagbtnusu = data;
+    });
+
+    // para el toolbar
     this.logService.toolbarReactiva.subscribe(data => {
       this.flagToolbar = data;
     });
