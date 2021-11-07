@@ -84,6 +84,13 @@
           <mat-divider></mat-divider>
         </div>
         
+        <div>
+          <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/conductor']">
+            <mat-icon>time_to_leave</mat-icon>
+            <span>Conductor</span>
+          </button>
+          <mat-divider></mat-divider>
+        </div>
       
     </mat-drawer>
 

@@ -1,0 +1,135 @@
+<div class="container">
+  <!--[hidden]="route.children.length !== 0"-->
+  <div>
+    <br />
+
+    <mat-form-field>
+        <mat-label>Filtro</mat-label>
+        <input
+          matInput
+          (keyup)="applyFilter($event.target.value)"
+          placeholder="Filtrar"
+          #input
+        />
+      </mat-form-field>
+
+    <div class="tabla">
+      <table mat-table class="tabla" [dataSource]="dataSourceConductor" matSort>
+        <ng-container matColumnDef="nombre">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Nombre
+          </mat-header-cell>
+          <mat-cell *matCellDef="let conductor">
+            {{ conductor.nombre }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="apellido">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Apellido
+          </mat-header-cell>
+          <mat-cell *matCellDef="let conductor">
+            {{ conductor.apellido }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="documento">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Documento
+          </mat-header-cell>
+          <mat-cell *matCellDef="let conductor">
+            {{ conductor.documento }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="nick">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Usuario
+          </mat-header-cell>
+          <mat-cell *matCellDef="let conductor">
+            {{ conductor.nick }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="direccion">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Dirección
+          </mat-header-cell>
+          <mat-cell *matCellDef="let conductor">
+            {{ conductor.direccion }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="celular">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Celular
+          </mat-header-cell>
+          <mat-cell *matCellDef="let conductor">
+            {{ conductor.celular }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="correo">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Correo
+          </mat-header-cell>
+          <mat-cell *matCellDef="let conductor">
+            {{ conductor.correo }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="ciudad">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            Ciudad
+          </mat-header-cell>
+          <mat-cell *matCellDef="let conductor">
+            {{ conductor.ciudad.nombre }}
+          </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+          <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+          <mat-cell *matCellDef="let conductor">
+            <button
+            mat-button
+              color="accent"
+              [routerLink]="['/conductor/editarconductor', conductor.idUsuario]"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-stroked-button
+              (click)="eliminarConductor(conductor.idUsuario)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+      </table>
+    </div>
+    <mat-paginator
+      class="paginador"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[2, 5, 10, 25, 100]"
+      [length]="cantidad"
+      (page)="cambiarPagina($event)"
+    ></mat-paginator>
+  </div>
+
+  <br />
+
+  <button
+    mat-stroked-button
+    color="accent"
+    class="agregar"
+    style="float: right"
+    routerLink="/conductor/agregar"
+  >
+    <span></span>
+    <mat-icon>person_add</mat-icon>
+  </button>
+</div>
+<router-outlet></router-outlet>

@@ -23,6 +23,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { MomentModule } from 'angular2-moment';
+import { ConductorComponent } from './pages/conductor/conductor.component';
 
 export function tokenGetter() {
   let tk = sessionStorage.getItem(environment.TOKEN);
@@ -42,7 +43,8 @@ export function tokenGetter() {
     NotOkComponent,
     ErrorAComponent,
     NotAllowedComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    ConductorComponent
   ],
   imports: [
     BrowserModule,
