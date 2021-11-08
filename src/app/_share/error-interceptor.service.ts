@@ -35,7 +35,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
         this.barraDeProgresoService.progressBarReactiva.next(true);
 
         // aquí se ponen todos los filtros cuando ocurra un error
-        console.log(err);
+        // console.log(err);
         if (err.status === 400 && err.error.error_description === "Bad credentials"){
           this.openSnackBar('Contraseña incorrecta');
           this.router.navigate(['/login']);

@@ -1,0 +1,165 @@
+<form
+  [formGroup]="formConductor"
+  #formVehiculo="ngForm"
+  (ngSubmit)="guardar()"
+  class="container"
+>
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Documento</mat-label>
+          <input
+            matInput
+            placeholder="Documento"
+            formControlName="documento"
+            maxlength="13"
+            type="number"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput placeholder="Nombre" formControlName="nombre" />
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Apellido</mat-label>
+          <input
+            matInput
+            placeholder="Apellido"
+            formControlName="apellido"
+            type="text"
+            maxlength="13"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Usuario</mat-label>
+          <input matInput placeholder="Usuario" formControlName="nick" />
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Clave</mat-label>
+          <input
+            matInput
+            placeholder="******"
+            formControlName="clave"
+            type="password"
+            maxlength="13"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Direccion</mat-label>
+          <input matInput placeholder="Direccion" formControlName="direccion" />
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Celular</mat-label>
+          <input
+            matInput
+            placeholder="3143981579"
+            formControlName="celular"
+            type="number"
+            maxlength="11"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Telefono alternativo</mat-label>
+          <input
+            matInput
+            placeholder="3215987814"
+            formControlName="celularAux"
+          />
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Correo</mat-label>
+          <input
+            matInput
+            placeholder="usuario@gmail.com"
+            formControlName="correo"
+            type="email"
+            maxlength="20"
+          />
+        </mat-form-field>
+      </td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <mat-label>Departamento</mat-label>
+          <mat-select
+            [(value)]="idDepartamento"
+            (selectionChange)="idDepar($event.value)"
+          >
+            <mat-option
+              [value]="departamento.idDepartamento"
+              *ngFor="let departamento of dataSource"
+            >
+              {{ departamento.nombre }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <mat-form-field>
+          <mat-label>Ciudades</mat-label>
+          <mat-select formControlName="ciudadReg">
+            <mat-option
+              [value]="ciudad"
+              *ngFor="let ciudad of dataSourceCiudad"
+              >{{ ciudad.nombre }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </td>
+    </tr>
+  </table>
+
+  <button mat-fab  color="accent" type="submit" [disabled]="formConductor.invalid">
+    <mat-icon>person_add</mat-icon>
+  </button>
+
+  <button
+    mat-fab
+    color="accent"
+    style="float: right"
+    [routerLink]="['/conductor']"
+  >
+    <mat-icon>cancel</mat-icon>
+  </button>
+</form>

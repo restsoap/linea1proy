@@ -12,6 +12,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { GuardianService } from './_share/guardian.service';
 import { ConductorComponent } from './pages/conductor/conductor.component';
+import { AgregarConductorComponent } from './pages/conductor/agregar-conductor/agregar-conductor.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,11 @@ const routes: Routes = [
     {path: 'edicion/:idVehiculo', component: AgregarVehiculoComponent, canActivate: [GuardianService]}
   ], canActivate: [GuardianService]
   },
-  {path: 'conductor', component: ConductorComponent, canActivate: [GuardianService]},
+  {path: 'conductor', component: ConductorComponent, canActivate: [GuardianService],
+    children: [
+      {path: 'agregar', component: AgregarConductorComponent }
+    ],
+  },
   // pagina no encontrada
   {path: 'login', component: LoginComponent},
   {path: 'usuario', component: UsuarioComponent, canActivate: [GuardianService]},

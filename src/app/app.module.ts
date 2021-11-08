@@ -24,6 +24,7 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { MomentModule } from 'angular2-moment';
 import { ConductorComponent } from './pages/conductor/conductor.component';
+import { AgregarConductorComponent } from './pages/conductor/agregar-conductor/agregar-conductor.component';
 
 export function tokenGetter() {
   let tk = sessionStorage.getItem(environment.TOKEN);
@@ -44,7 +45,8 @@ export function tokenGetter() {
     ErrorAComponent,
     NotAllowedComponent,
     UsuarioComponent,
-    ConductorComponent
+    ConductorComponent,
+    AgregarConductorComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,22 @@
+.example-form {
+    width: 90%;
+    margin: 2% 5% 5% 5%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+  
+  td {
+    padding-right: 8px;
+  }
+  
+  .container {
+    width: 80%;
+    margin: 2% 5% 5% 5%;
+  }
+  
+  .snak-correct{
+    background-color: #e8eaf6;
+    color: #147a19;
+  }

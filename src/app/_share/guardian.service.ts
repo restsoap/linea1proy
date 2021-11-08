@@ -63,7 +63,7 @@ export class GuardianService implements CanActivate {
       }
 
     } else {
-      this.logService.toolbarReactiva.next(true);
+      this.logService.toolbarReactiva.next(false);
       this.router.navigate(['/nopermiso']);
       return false;
     }

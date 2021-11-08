@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 import { Conductor } from 'src/app/_model/Conductor';
 import { ConductorService } from 'src/app/_service/conductor.service';
 
@@ -22,6 +23,7 @@ export class ConductorComponent implements OnInit {
 
   constructor(
     private conductorService: ConductorService,
+    public route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {

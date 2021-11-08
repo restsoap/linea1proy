@@ -21,4 +21,8 @@ export class ConductorService {
   listarPorId(idConductor: number) {
     return this.http.get<Conductor>(`${this.url}/listar/${idConductor}`);
   }
+
+  guardar(conductor: Conductor){
+    return this.http.post(`${this.url}/guardar`, conductor);
+  }
 }
