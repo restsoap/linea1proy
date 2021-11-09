@@ -16,12 +16,24 @@
             maxlength="13"
             type="number"
           />
+          <mat-error *ngIf="documento.invalid && documento.errors.required"
+            >Documento requerido</mat-error
+          >
+          <mat-error *ngIf="documento.invalid && documento.errors.pattern"
+            >Solo se aceptan números</mat-error
+          >
         </mat-form-field>
       </td>
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Nombre</mat-label>
           <input matInput placeholder="Nombre" formControlName="nombre" />
+          <mat-error *ngIf="nombre.invalid && nombre.errors.required"
+            >Nombre requerido</mat-error
+          >
+          <mat-error *ngIf="nombre.invalid && nombre.errors.pattern"
+            >Solo se aceptan letras</mat-error
+          >
         </mat-form-field>
       </td>
     </tr>
@@ -39,12 +51,24 @@
             type="text"
             maxlength="13"
           />
+          <mat-error *ngIf="apellido.invalid && apellido.errors.required"
+            >Apellido requerido</mat-error
+          >
+          <mat-error *ngIf="apellido.invalid && apellido.errors.pattern"
+            >Solo se aceptan letras</mat-error
+          >
         </mat-form-field>
       </td>
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Usuario</mat-label>
           <input matInput placeholder="Usuario" formControlName="nick" />
+          <mat-error *ngIf="nick.invalid && nick.errors.required"
+            >Usuario requerido</mat-error
+          >
+          <mat-error *ngIf="nick.invalid && nick.errors.pattern"
+            >Solo se aceptan letras y numeros</mat-error
+          >
         </mat-form-field>
       </td>
     </tr>
@@ -60,8 +84,14 @@
             placeholder="******"
             formControlName="clave"
             type="password"
-            maxlength="13"
+            maxlength="15"
           />
+          <mat-error *ngIf="clave.invalid && clave.errors.required"
+            >Clave requerida</mat-error
+          >
+          <mat-error *ngIf="clave.invalid && clave.errors.pattern"
+            >clave invalida</mat-error
+          >
         </mat-form-field>
       </td>
       <td>
@@ -85,6 +115,12 @@
             type="number"
             maxlength="11"
           />
+          <mat-error *ngIf="celular.invalid && celular.errors.required"
+            >Celular requerido</mat-error
+          >
+          <mat-error *ngIf="celular.invalid && celular.errors.pattern"
+            >Celular invalido</mat-error
+          >
         </mat-form-field>
       </td>
       <td>
@@ -95,6 +131,12 @@
             placeholder="3215987814"
             formControlName="celularAux"
           />
+          <mat-error *ngIf="celularAux.invalid && celularAux.errors.required"
+            >Celular auxiliar requerido</mat-error
+          >
+          <mat-error *ngIf="celularAux.invalid && celularAux.errors.pattern"
+            >Celular invalido</mat-error
+          >
         </mat-form-field>
       </td>
     </tr>
@@ -112,6 +154,12 @@
             type="email"
             maxlength="20"
           />
+          <mat-error *ngIf="correo.invalid && correo.errors.required"
+            >Correo requerido</mat-error
+          >
+          <mat-error *ngIf="correo.invalid && correo.errors.pattern"
+            >Correo invalido</mat-error
+          >
         </mat-form-field>
       </td>
       <td>
@@ -145,6 +193,9 @@
               >{{ ciudad.nombre }}</mat-option
             >
           </mat-select>
+          <mat-error *ngIf="ciudadReg.invalid && ciudadReg.errors.required"
+            >Debe seleccionar una ciudad</mat-error
+          >
         </mat-form-field>
       </td>
     </tr>

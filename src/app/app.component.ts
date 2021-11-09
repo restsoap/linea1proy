@@ -5,11 +5,10 @@ import { Observable } from 'rxjs';
 import { LoginService } from './_service/login.service';
 import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BarraDeProgresoService } from './_service/barra-de-progreso.service';
-
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +16,8 @@ import { BarraDeProgresoService } from './_service/barra-de-progreso.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public flagprogressbar: boolean = false;
+
+  public flagProgressBar: boolean = true;
   public flagToolbar: boolean = true;
   isLoggedIn$: Observable<boolean>;
   public flaguser: boolean = true;
@@ -28,8 +28,6 @@ export class AppComponent implements OnInit {
   lastPing?: Date = null;
   title = 'angular-idle-timeout';
 
-  
-
   constructor(
     private barraService: BarraDeProgresoService,
     public route: ActivatedRoute,
@@ -39,11 +37,8 @@ export class AppComponent implements OnInit {
     public Keepalive: Keepalive,
     private router: Router,
     private snackBar: MatSnackBar,
-
-
   ) {
 
-    
 
     // sets an idle timeout of 5 seconds, for testing purposes.
     idle.setIdle(5);
@@ -65,9 +60,6 @@ export class AppComponent implements OnInit {
       this.router.navigate(['']);
       this.openSnackBar('Sesion terminada  por favor haga el login nuevamente.');
       this.logService.cerrarSesion();
-
-
-
     });
 
     console.log('entro aca');
@@ -75,7 +67,7 @@ export class AppComponent implements OnInit {
     idle.onIdleStart.subscribe(() => {
       this.idleState = 'Tu\'estado es inactivo!'
       console.log(this.idleState);
-      
+
       // this.childModal.show();
     });
 
@@ -112,70 +104,56 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-
     if (this.loginService.estaLogueado() == true) {
       this.flagToolbar = false;
     } else {
       this.flagToolbar = true;
     }
 
- 
     this.loginService.usuarioReactivo.subscribe(data => {
       this.flaguser = data;
-
     });
 
     this.loginService.administradorReactivo.subscribe(data => {
       this.flagadmin = data;
-
     });
-
-
 
     this.loginService.toolbarReactiva.subscribe(data => {
       this.flagToolbar = data;
 
-      //let cont = false;
-      //do {
-
-
       const helper = new JwtHelperService();
       let token = sessionStorage.getItem(environment.TOKEN);
-      console.log('token:=' + token);
+
+      // console.log('token:=' + token);
       if (!helper.isTokenExpired(token)) {
         const decodedToken = helper.decodeToken(token);
         const rol: string = decodedToken.authorities[0];
-        console.log(rol);
+
+        // console.log(rol);
         if (rol == 'Conductor') {
           this.flagadmin = true;
           this.flaguser = false;
-          console.log('hola' + rol);
+          // console.log('hola' + rol);
         } else {
           this.flagadmin = false;
           this.flaguser = true;
-          console.log('chao' + rol);
+          // console.log('chao' + rol);
         }
-        // cont= true;
       } else {
-        console.log('no hay token');
+        // console.log('no hay token');
       }
 
     });
 
-
-
     this.barraService.progressBarReactiva.subscribe(data => {
-      this.flagprogressbar = data;
+      this.flagProgressBar = data;
       //this.flagprogressbar = !this.flagprogressbar;
       this.isLoggedIn$ = this.logService.isLoggedIn;
     });
 
   }
   onLogout() {
-    
     this.logService.cerrarSesion();
-
   }
 
   public refresh(): void { window.location.reload(); }
@@ -186,9 +164,6 @@ export class AppComponent implements OnInit {
       duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
-
     });
   }
-
-
 }

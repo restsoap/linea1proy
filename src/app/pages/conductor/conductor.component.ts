@@ -2,8 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Conductor } from 'src/app/_model/Conductor';
 import { ConductorService } from 'src/app/_service/conductor.service';
+import { BarraDeProgresoService } from '../../_service/barra-de-progreso.service';
 
 @Component({
   selector: 'app-conductor',
@@ -11,6 +13,8 @@ import { ConductorService } from 'src/app/_service/conductor.service';
   styleUrls: ['./conductor.component.css']
 })
 export class ConductorComponent implements OnInit {
+
+  suscripcion: Subscription;
 
   displayedColumns: string[] = ['nombre', 'apellido', 'documento', 'nick', 'direccion', 'celular', 'correo', 'ciudad', 'acciones'];
   dataSourceConductor = new MatTableDataSource<Conductor>();
@@ -23,11 +27,15 @@ export class ConductorComponent implements OnInit {
 
   constructor(
     private conductorService: ConductorService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public barradeProgresoService: BarraDeProgresoService
   ) { }
 
   ngOnInit(): void {
     this.listarPaginado();
+    this.suscripcion = this.conductorService.refreshCond$.subscribe(() => {
+      this.listarPaginado();
+    }) 
   }
 
   cambiarPagina(e: any) {
@@ -37,10 +45,12 @@ export class ConductorComponent implements OnInit {
   }
 
   listarPaginado() {
+    this.barradeProgresoService.progressBarReactiva.next(false);
     this.conductorService.listarPaginado(this.pageIndex, this.pageSize).subscribe(data => {
       this.dataSourceConductor = new MatTableDataSource(data.content);
       this.dataSourceConductor.sort = this.sort;
       this.cantidad = data.totalElements;
+      this.barradeProgresoService.progressBarReactiva.next(true);
     });
   }
 

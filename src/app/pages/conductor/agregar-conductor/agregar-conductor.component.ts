@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Ciudad } from 'src/app/_model/Ciudad';
@@ -18,7 +18,19 @@ import { DepartamentoService } from 'src/app/_service/departamento.service';
 })
 export class AgregarConductorComponent implements OnInit {
 
-  formConductor: FormGroup;
+  formConductor = this.fb.group({
+    documento: ['', Validators.required],
+    nombre: ['', Validators.required],
+    apellido: ['', Validators.required],
+    nick: ['', Validators.required],
+    clave: ['', Validators.required],
+    direccion: ['', Validators.required],
+    celular: ['', Validators.required],
+    celularAux: ['', Validators.required],
+    correo: ['', Validators.required],
+    ciudadReg: ['', Validators.required]
+  });
+
 
   private id: number;
   private edicion: boolean;
@@ -55,17 +67,53 @@ export class AgregarConductorComponent implements OnInit {
   }
 
   iniciarformulario() {
-    this.formConductor = this.fb.group({
-      documento: ['', Validators.required],
-      nombre: ['', Validators.required],
-      apellido: ['', Validators.required],
-      nick: ['', Validators.required],
-      clave: ['', Validators.required],
-      direccion: ['', Validators.required],
-      celular: ['', Validators.required],
-      celularAux: ['', Validators.required],
-      correo: ['', Validators.required],
-      ciudadReg: ['', Validators.required]
+    this.formConductor = new FormGroup({
+      'documento': new FormControl('', [
+        Validators.required,
+        Validators.pattern(/[0-9]/)
+      ]),
+      'nombre': new FormControl('', [
+        Validators.required,
+        Validators.pattern(/[a-zA-Z ]{2,25}/)
+      ]),
+      'apellido': new FormControl('', [
+        Validators.required,
+        Validators.pattern(/[a-zA-Z ]{2,25}/)
+      ]),
+      'nick': new FormControl('', [
+        Validators.required,
+        Validators.pattern(/[A-Za-z0-9]/)
+      ]),
+      'clave': new FormControl('', [
+        Validators.required,
+        /*Minimo 8 caracteres
+          Maximo 15
+          Al menos una letra mayúscula
+          Al menos una letra minucula
+          Al menos un dígito
+          No espacios en blanco
+          Al menos 1 caracter especial*/
+        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/)
+      ]),
+      'direccion': new FormControl('', [
+        Validators.required,
+        //Validators.pattern(/[A-Z]{3}[-]\d{3}/)
+      ]),
+      'celular': new FormControl('', [
+        Validators.required,
+        Validators.pattern(/[0-9]{7,10}/)
+      ]),
+      'celularAux': new FormControl('', [
+        Validators.required,
+        Validators.pattern(/[0-9]{7,10}/)
+      ]),
+      'correo': new FormControl('', [
+        Validators.required,
+        Validators.pattern(/[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}/igm)
+      ]),
+      'ciudadReg': new FormControl('', [
+        Validators.required
+      ]),
     });
   }
 
@@ -125,5 +173,35 @@ export class AgregarConductorComponent implements OnInit {
     });
   }
 
+  get nombre() {
+    return this.formConductor.get('nombre');
+  }
+  get apellido() {
+    return this.formConductor.get('apellido');
+  }
+  get documento() {
+    return this.formConductor.get('documento');
+  }
+  get nick() {
+    return this.formConductor.get('nick');
+  }
+  get clave() {
+    return this.formConductor.get('clave');
+  }
+  get direccion() {
+    return this.formConductor.get('direccion');
+  }
+  get celular() {
+    return this.formConductor.get('celular');
+  }
+  get celularAux() {
+    return this.formConductor.get('celularAux');
+  }
+  get correo() {
+    return this.formConductor.get('correo');
+  }
+  get ciudadReg() {
+    return this.formConductor.get('ciudadReg');
+  }
 
 }
