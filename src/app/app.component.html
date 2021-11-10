@@ -41,6 +41,14 @@
 
         <img src="assets/udec_escudo.png" width="128" style="margin-left: 20px;" />
 
+        <div [hidden]="flagadmin" [hidden]="flaguser">
+          <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/home']">
+            <mat-icon>home</mat-icon>
+            <span>Inicio</span>
+          </button>
+          <mat-divider></mat-divider> 
+        </div>  
+
         <div [hidden]="flagadmin">
           <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/departamento']">
             <mat-icon>room</mat-icon>
@@ -57,7 +65,7 @@
           <mat-divider></mat-divider>
         </div>
 
-        <div [hidden]="flagadmin" [hidden]="flaguser">
+        <div  [hidden]="flaguser">
           <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/usuario']">
             <mat-icon>account_circle</mat-icon>
             <span>Usuario</span>

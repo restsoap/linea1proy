@@ -48,7 +48,13 @@ export class GuardianService implements CanActivate {
         else if (url.includes('conductor') && rol === 'Administrador') {
           return true;
         }
+        else if (url.includes('home') && rol === 'Administrador') {
+          return true;
+        }
         else if (url.includes('usuario') && rol === 'Conductor') {
+          return true;
+        }
+        else if (url.includes('home') && rol === 'Conductor') {
           return true;
         }
         else {

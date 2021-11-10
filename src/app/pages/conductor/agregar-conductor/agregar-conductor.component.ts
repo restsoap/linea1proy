@@ -97,7 +97,7 @@ export class AgregarConductorComponent implements OnInit {
       ]),
       'direccion': new FormControl('', [
         Validators.required,
-        //Validators.pattern(/[A-Z]{3}[-]\d{3}/)
+        // Validators.pattern(/[A-Z]{3}[-]\d{3}/)
       ]),
       'celular': new FormControl('', [
         Validators.required,
@@ -168,6 +168,7 @@ export class AgregarConductorComponent implements OnInit {
     this.conductorService.guardar(conductor).subscribe(() => {
       this.formConductor.reset();
       // this.conductorService.mensajeCambio.next('Se ha guardado exitosamente el conductor');
+      this.openSnackBarr('Guardado correctamente');
       this.router.navigate(['/conductor']);
       // });
     });
@@ -202,6 +203,15 @@ export class AgregarConductorComponent implements OnInit {
   }
   get ciudadReg() {
     return this.formConductor.get('ciudadReg');
+  }
+
+  openSnackBarr(mensaje: string) {
+    this.snackBar.open(mensaje, '', {
+      duration: 2000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: ['snak-correct']
+    });
   }
 
 }

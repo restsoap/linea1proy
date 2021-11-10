@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
     // 'admin'    '123456'
     this.loginService.login(this.usuario.value, this.contrasena.value).subscribe(data => {
       sessionStorage.setItem(environment.TOKEN, data.access_token);
-      this.router.navigate(['/usuario']);
+      this.router.navigate(['/home']);
       this.loginService.toolbarReactiva.next(false);
       /* this.router.navigate(['/usuario'])
         .then(() => {

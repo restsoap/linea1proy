@@ -16,6 +16,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [],
@@ -35,7 +36,8 @@ import { MatCardModule } from '@angular/material/card';
     MatSortModule,
     MatSelectModule,
     MatSnackBarModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ], exports: [
     MatButtonModule,
     MatIconModule,
@@ -51,7 +53,8 @@ import { MatCardModule } from '@angular/material/card';
     MatSortModule,
     MatSelectModule,
     MatSnackBarModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ]
 })
 export class MaterialModule { }

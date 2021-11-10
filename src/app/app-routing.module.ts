@@ -13,10 +13,12 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { GuardianService } from './_share/guardian.service';
 import { ConductorComponent } from './pages/conductor/conductor.component';
 import { AgregarConductorComponent } from './pages/conductor/agregar-conductor/agregar-conductor.component';
+import { HhomeComponent } from './pages/hhome/hhome.component';
 
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
+  {path: 'home', component: HhomeComponent, canActivate: [GuardianService]},
   {path: 'departamento', component: DepartamentoComponent, children : [
       {path:  'ciudad/:idDep', component: CiudadComponent, canActivate: [GuardianService]}
     ], canActivate: [GuardianService]

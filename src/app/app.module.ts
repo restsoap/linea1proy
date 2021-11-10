@@ -25,6 +25,7 @@ import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { MomentModule } from 'angular2-moment';
 import { ConductorComponent } from './pages/conductor/conductor.component';
 import { AgregarConductorComponent } from './pages/conductor/agregar-conductor/agregar-conductor.component';
+import { HhomeComponent } from './pages/hhome/hhome.component';
 
 export function tokenGetter() {
   let tk = sessionStorage.getItem(environment.TOKEN);
@@ -46,7 +47,8 @@ export function tokenGetter() {
     NotAllowedComponent,
     UsuarioComponent,
     ConductorComponent,
-    AgregarConductorComponent
+    AgregarConductorComponent,
+    HhomeComponent
   ],
   imports: [
     BrowserModule,

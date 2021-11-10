@@ -35,7 +35,7 @@ export class ConductorComponent implements OnInit {
     this.listarPaginado();
     this.suscripcion = this.conductorService.refreshCond$.subscribe(() => {
       this.listarPaginado();
-    }) 
+    });
   }
 
   cambiarPagina(e: any) {

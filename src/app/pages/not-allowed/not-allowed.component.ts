@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/_service/login.service';
 
 @Component({
   selector: 'app-not-allowed',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotAllowedComponent implements OnInit {
 
-  constructor() { }
+  constructor(public logService: LoginService) { }
 
   ngOnInit(): void {
+    this.logService.toolbarReactiva.next(true);
   }
 
 }
