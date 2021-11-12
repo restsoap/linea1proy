@@ -58,6 +58,7 @@ export class GuardianService implements CanActivate {
           return true;
         }
         else {
+          this.logService.toolbarReactiva.next(false);
           this.router.navigate(['/nopermiso']);
           return false;
         }
@@ -69,7 +70,7 @@ export class GuardianService implements CanActivate {
       }
 
     } else {
-      this.logService.toolbarReactiva.next(false);
+      // this.logService.toolbarReactiva.next(false);
       this.router.navigate(['/nopermiso']);
       return false;
     }

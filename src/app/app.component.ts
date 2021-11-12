@@ -47,7 +47,8 @@ export class AppComponent implements OnInit {
     // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
     idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
     idle.onIdleEnd.subscribe(() => {
-      this.idleState = 'La sesion ya no está inactiva.'
+      this.idleState = 'La sesion ya no está inactiva.';
+      this.openSnackBar('La sesion ya no está inactiva.');
       console.log(this.idleState);
       this.reset();
     });
@@ -58,25 +59,24 @@ export class AppComponent implements OnInit {
       this.timedOut = true;
       console.log(this.idleState);
       this.router.navigate(['']);
-      this.openSnackBar('Sesion terminada  por favor haga el login nuevamente.');
+      this.openSnackBar('Sesión terminada, por favor inicie sesión nuevamente.');
       this.logService.cerrarSesion();
     });
 
-    console.log('entro aca');
-
     idle.onIdleStart.subscribe(() => {
-      this.idleState = 'Tu\'estado es inactivo!'
+      this.idleState = 'Tu\'estado es inactivo!';
       console.log(this.idleState);
 
       // this.childModal.show();
     });
 
     idle.onTimeoutWarning.subscribe((countdown) => {
-      this.idleState = 'Te detendrás en:' + countdown + ':Segundos!'
+      this.idleState = 'Te detendrás en:' + countdown + ':Segundos!';
+      this.openSnackBar('Te detendrás en:' + countdown + ':Segundos!');
       console.log(this.idleState);
     });
 
-    // sets the ping interval to 15 seconds
+    // establece el intervalo de ping en 15 segundos
     Keepalive.interval(15);
 
     Keepalive.onPing.subscribe(() => this.lastPing = new Date());
