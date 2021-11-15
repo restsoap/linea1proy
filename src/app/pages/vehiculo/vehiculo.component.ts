@@ -7,6 +7,9 @@ import { Vehiculo } from 'src/app/_model/Vehiculo';
 import { BarraDeProgresoService } from 'src/app/_service/barra-de-progreso.service';
 import { VehiculoService } from './../../_service/vehiculo.service';
 
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AsociaciondialogoComponent } from './asociaciondialogo/asociaciondialogo.component';
+
 @Component({
   selector: 'app-vehiculo',
   templateUrl: './vehiculo.component.html',
@@ -32,7 +35,8 @@ export class VehiculoComponent implements OnInit, OnDestroy {
   constructor(
     private serviceVehiculo: VehiculoService,
     public route: ActivatedRoute,
-    private barraDeProgresoService: BarraDeProgresoService
+    private barraDeProgresoService: BarraDeProgresoService,
+    public dialog: MatDialog
   ) { }
 
   async ngOnInit(): Promise<void> {
@@ -69,6 +73,13 @@ export class VehiculoComponent implements OnInit, OnDestroy {
   // metodo para aplicar el filtro a un data table
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
+  }
+
+  abrirDialogo(vehiculo: Vehiculo){
+    const dialogRef = this.dialog.open(AsociaciondialogoComponent, {
+      width: '450px',
+      data: {placa: vehiculo.placa, idVehiculo: vehiculo.idVehiculo}
+    });
   }
 
 }

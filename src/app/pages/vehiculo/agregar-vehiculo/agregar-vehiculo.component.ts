@@ -109,7 +109,6 @@ export class AgregarVehiculoComponent implements OnInit {
   cargarData() {
     this.barraDeProgresoService.progressBarReactiva.next(false);
     this.serviceAgregarVehiculo.listarIdVehiculo(this.idV).subscribe((data) => {
-      // console.log(data);
       this.Vehform.get('placa').setValue(data.placa);
       this.Vehform.get('modelo').setValue(data.modelo);
       this.Vehform.get('marca').setValue(data.marca);

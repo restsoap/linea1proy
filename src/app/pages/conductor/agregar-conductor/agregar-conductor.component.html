@@ -165,11 +165,11 @@
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Departamento</mat-label>
-          <mat-select
+          <mat-select formControlName="departamento"
             [(value)]="idDepartamento"
             (selectionChange)="idDepar($event.value)"
           >
-            <mat-option
+            <mat-option 
               [value]="departamento.idDepartamento"
               *ngFor="let departamento of dataSource"
             >
@@ -201,7 +201,12 @@
     </tr>
   </table>
 
-  <button mat-fab  color="accent" type="submit" [disabled]="formConductor.invalid">
+  <button
+    mat-fab
+    color="accent"
+    type="submit"
+    [disabled]="formConductor.invalid"
+  >
     <mat-icon>person_add</mat-icon>
   </button>
 

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 // ReactiveFormsModule sirve para enviar los parametros
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule} from './material/material.module';
+import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DepartamentoComponent } from './pages/departamento/departamento.component';
@@ -26,6 +26,7 @@ import { MomentModule } from 'angular2-moment';
 import { ConductorComponent } from './pages/conductor/conductor.component';
 import { AgregarConductorComponent } from './pages/conductor/agregar-conductor/agregar-conductor.component';
 import { HhomeComponent } from './pages/hhome/hhome.component';
+import { AsociaciondialogoComponent } from './pages/vehiculo/asociaciondialogo/asociaciondialogo.component';
 
 export function tokenGetter() {
   let tk = sessionStorage.getItem(environment.TOKEN);
@@ -48,7 +49,8 @@ export function tokenGetter() {
     UsuarioComponent,
     ConductorComponent,
     AgregarConductorComponent,
-    HhomeComponent
+    HhomeComponent,
+    AsociaciondialogoComponent
   ],
   imports: [
     BrowserModule,
@@ -67,6 +69,9 @@ export function tokenGetter() {
         disallowedRoutes: ['http://159.223.107.103:8080/movitapp-backend/oauth/token'],
       },
     }),
+  ],
+  entryComponents: [
+    AsociaciondialogoComponent
   ],
   providers: [
     {

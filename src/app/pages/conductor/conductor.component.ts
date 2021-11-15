@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
@@ -28,7 +29,8 @@ export class ConductorComponent implements OnInit {
   constructor(
     private conductorService: ConductorService,
     public route: ActivatedRoute,
-    public barradeProgresoService: BarraDeProgresoService
+    public barradeProgresoService: BarraDeProgresoService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -56,6 +58,18 @@ export class ConductorComponent implements OnInit {
 
   applyFilter(filterValue: String) {
     this.dataSourceConductor.filter = filterValue.trim().toLowerCase();
+  }
+
+  eliminarConductor(idUser) {
+    this.conductorService.eliminar(idUser).subscribe(() => {
+      this.openSnackBar('Eliminado correctamente');
+    });
+  }
+
+  openSnackBar(message: string) {
+    this.snackBar.open(message, '', {
+      duration: 4000,
+    });
   }
 
 }

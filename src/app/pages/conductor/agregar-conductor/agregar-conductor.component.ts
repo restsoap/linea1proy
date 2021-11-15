@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Ciudad } from 'src/app/_model/Ciudad';
 import { Conductor } from 'src/app/_model/Conductor';
 import { Departamento } from 'src/app/_model/Departamento';
@@ -18,19 +18,7 @@ import { DepartamentoService } from 'src/app/_service/departamento.service';
 })
 export class AgregarConductorComponent implements OnInit {
 
-  formConductor = this.fb.group({
-    documento: ['', Validators.required],
-    nombre: ['', Validators.required],
-    apellido: ['', Validators.required],
-    nick: ['', Validators.required],
-    clave: ['', Validators.required],
-    direccion: ['', Validators.required],
-    celular: ['', Validators.required],
-    celularAux: ['', Validators.required],
-    correo: ['', Validators.required],
-    ciudadReg: ['', Validators.required]
-  });
-
+  formConductor: FormGroup;
 
   private id: number;
   private edicion: boolean;
@@ -47,20 +35,21 @@ export class AgregarConductorComponent implements OnInit {
   constructor(
     private conductorService: ConductorService,
     private router: Router,
-    private fb: FormBuilder,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
-    private barraDeProgresoService: BarraDeProgresoService,
     private departamentoService: DepartamentoService
-
   ) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params: Params) => {
+      this.id = params['id'];
+      this.edicion = params['id'] != null;
+    });
+
     this.iniciarformulario();
     if (this.edicion === true) {
       this.cargarDatos();
     }
-
     this.departamentoService.listar().subscribe(res => {
       this.dataSource = res;
     });
@@ -119,16 +108,17 @@ export class AgregarConductorComponent implements OnInit {
 
   cargarDatos() {
     this.conductorService.listarPorId(this.id).subscribe(data => {
-      this.formConductor.get("documento").setValue(data.documento);
-      this.formConductor.get("nombre").setValue(data.nombre);
-      this.formConductor.get("apellido").setValue(data.apellido);
-      this.formConductor.get("nick").setValue(data.nick);
-      this.formConductor.get("clave").setValue(data.clave);
-      this.formConductor.get("direccion").setValue(data.direccion);
-      this.formConductor.get("celular").setValue(data.celular);
-      this.formConductor.get("celularAux").setValue(data.celularAux);
-      this.formConductor.get("correo").setValue(data.correo);
-      this.formConductor.get("ciudadReg").setValue(data.ciudad);
+      this.formConductor.get('documento').setValue(data.documento);
+      this.formConductor.get('nombre').setValue(data.nombre);
+      this.formConductor.get('apellido').setValue(data.apellido);
+      this.formConductor.get('nick').setValue(data.nick);
+      this.formConductor.get('clave').setValue(data.clave);
+      this.formConductor.get('direccion').setValue(data.direccion);
+      this.formConductor.get('celular').setValue(data.celular);
+      this.formConductor.get('celularAux').setValue(data.celularAux);
+      this.formConductor.get('correo').setValue(data.correo);
+      this.formConductor.get('departamento').setValue(data.ciudad.departamento);
+      this.formConductor.get('ciudadReg').setValue(data.ciudad);
     });
   }
 
@@ -156,22 +146,22 @@ export class AgregarConductorComponent implements OnInit {
     conductor.rol = rolCond;
     conductor.ciudad = this.formConductor.value['ciudadReg'];
 
-    // if ( this.edicion === true){
-    /* conductor.idUsuario = this.id;
-    this.conductorservice.editar(conductor).subscribe(() => {
-      this.formConductor.reset();
-      this.conductorservice.mensajeCambio.next('Se ha modificado el Conductor satisfactoriamente');
-      this.router.navigate(['./conductor']);
-    }); */
-    // }else {
-    console.log(conductor);
-    this.conductorService.guardar(conductor).subscribe(() => {
-      this.formConductor.reset();
-      // this.conductorService.mensajeCambio.next('Se ha guardado exitosamente el conductor');
-      this.openSnackBarr('Guardado correctamente');
-      this.router.navigate(['/conductor']);
-      // });
-    });
+    if (this.edicion === true) {
+      console.log(conductor);
+      conductor.idUsuario = this.id;
+      this.conductorService.editar(conductor).subscribe(() => {
+        this.openSnackBarr('Editado correctamente');
+        this.formConductor.reset();
+        this.router.navigate(['/conductor']);
+      });
+    } else {
+      console.log(conductor);
+      this.conductorService.guardar(conductor).subscribe(() => {
+        this.formConductor.reset();
+        this.openSnackBarr('Guardado correctamente');
+        this.router.navigate(['/conductor']);
+      });
+    }
   }
 
   get nombre() {
@@ -203,6 +193,9 @@ export class AgregarConductorComponent implements OnInit {
   }
   get ciudadReg() {
     return this.formConductor.get('ciudadReg');
+  }
+  get departamento() {
+    return this.formConductor.get('departamento');
   }
 
   openSnackBarr(mensaje: string) {

@@ -36,6 +36,33 @@ export class ConductorService {
       tap(() => {
         this.refreshCond$.next();
       })
-    )
+    );
   }
+
+  editar(conductor: Conductor){
+    return this.http.put(`${this.url}/editar`, conductor)
+    .pipe(
+      tap(() => {
+        this.refreshCond$.next();
+      })
+    );
+  }
+
+  eliminar(idConductor: number){
+    return this.http.delete(`${this.url}/eliminar/${idConductor}`)
+    .pipe(
+      tap(() => {
+        this.refreshCond$.next();
+      })
+    );
+  }
+
+  conductoresNoAsociados(idVehiculo: number){
+    return this.http.get<any>(`${this.url}/listarConductorNoVehiculo/${idVehiculo}`);
+  }
+
+  conductoresAsociados(idVehiculo: number){
+    return this.http.get<any>(`${this.url}/listarConductorVehiculo/${idVehiculo}`);
+  }
+
 }

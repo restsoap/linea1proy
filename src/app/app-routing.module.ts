@@ -30,7 +30,8 @@ const routes: Routes = [
   },
   {path: 'conductor', component: ConductorComponent, canActivate: [GuardianService],
     children: [
-      {path: 'agregar', component: AgregarConductorComponent }
+      {path: 'agregar', component: AgregarConductorComponent },
+      {path: 'editarconductor/:id', component: AgregarConductorComponent}
     ],
   },
   // pagina no encontrada
