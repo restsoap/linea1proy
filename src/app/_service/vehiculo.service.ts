@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { Asociacion } from './../_model/Asociacion';
 import { Vehiculo } from '../_model/Vehiculo';
 import { Observable, pipe, Subject } from 'rxjs';
+
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -49,5 +51,13 @@ export class VehiculoService {
         this._refresh$.next();
       })
     );
+  }
+
+  asociarVehiculos(asociaciar: Asociacion) {​​
+    return this.http.post(`${this.url}/asociarcondcutor/${asociaciar.idUsuario}/${asociaciar.idVehiculo}`, asociaciar);
+  }​​
+
+  desasociarVehiculo(desasociar: Asociacion){
+    return this.http.post(`${this.url}/desasociarconductor/${desasociar.idUsuario}/${desasociar.idVehiculo}`, desasociar);
   }
 }

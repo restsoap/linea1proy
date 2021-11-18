@@ -1,1 +1,85 @@
-<p>asociaciondialogo works!</p>
+<button
+  mat-fab
+  class="cerrar"
+  style="float: right"
+  color="accent"
+  (click)="cerrarDialogo()"
+>
+  <mat-icon>cancel</mat-icon>
+</button>
+
+<p>Conductores</p>
+<p>Placa de Vehículo: {{ data.placa }}</p>
+<table>
+  <div class="content">
+    <tr>
+      <td>
+        <mat-form-field class="content">
+          <mat-label>Conductores</mat-label>
+          <mat-select
+            [(value)]="idUsuario"
+            (selectionChange)="idSelect($event.value)"
+          >
+            <mat-option
+              [value]="conductor.idUsuario"
+              *ngFor="let conductor of dataSourceSelect"
+              >{{ conductor.nombre }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </td>
+      <td>
+        <button
+          mat-raised-button
+          class="asociar"
+          color="primary"
+          (click)="Asociar()"
+        >
+          Asociar
+        </button>
+      </td>
+    </tr>
+  </div>
+</table>
+<br />
+<!--
+<div class="tabla_asociacion">
+  <table
+    mat-table
+    [dataSource]="dataSourceConductores"
+    matSort
+    class="mat-elevation-z8"
+  >
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Nombre
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.apellido }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="apellido">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        Apellido
+      </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.nombre }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="acciones">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let conductor">
+        <button
+          mat-stroked-button
+          class="upa"
+          color="primary"
+          (click)="desasociar(conductor.idUsuario)"
+        >
+          <mat-icon>clear</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+  </table>
+</div>
+<mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 5]"></mat-paginator>
+<br />
+-->

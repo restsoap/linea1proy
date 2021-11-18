@@ -1,0 +1,32 @@
+.tabla_asociacion {
+  width: 400px;
+}
+.mat-elevation-z8 {
+  width: 100%;
+}
+
+.cerrar {
+  color: black;
+  background: white;
+}
+.cerrar:hover {
+  background: black;
+  color: white;
+}
+
+p {
+  font-size: 25px;
+  font-weight: 400px;
+}
+.asociar {
+  color: black;
+  background-color: #f5a106;
+  margin-left: 50px;
+}
+.content {
+  margin-left: 10%;
+}
+.upa {
+  color: #f5a106;
+  background: black;
+}
