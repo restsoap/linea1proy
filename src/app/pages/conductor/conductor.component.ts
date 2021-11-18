@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,6 +8,7 @@ import { Subscription } from 'rxjs';
 import { Conductor } from 'src/app/_model/Conductor';
 import { ConductorService } from 'src/app/_service/conductor.service';
 import { BarraDeProgresoService } from '../../_service/barra-de-progreso.service';
+import { ConfirmaDialogComponent } from './confirma-dialog/confirma-dialog.component';
 
 @Component({
   selector: 'app-conductor',
@@ -30,7 +32,8 @@ export class ConductorComponent implements OnInit {
     private conductorService: ConductorService,
     public route: ActivatedRoute,
     public barradeProgresoService: BarraDeProgresoService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -69,6 +72,13 @@ export class ConductorComponent implements OnInit {
   openSnackBar(message: string) {
     this.snackBar.open(message, '', {
       duration: 4000,
+    });
+  }
+
+  abrirDialogo(conductor: Conductor){
+    const dialogRef = this.dialog.open(ConfirmaDialogComponent, {
+      width: '450px',
+      data: {idUsuario: conductor.idUsuario, nombre: conductor.nombre, apellido: conductor.apellido}
     });
   }
 

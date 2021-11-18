@@ -27,6 +27,7 @@ import { ConductorComponent } from './pages/conductor/conductor.component';
 import { AgregarConductorComponent } from './pages/conductor/agregar-conductor/agregar-conductor.component';
 import { HhomeComponent } from './pages/hhome/hhome.component';
 import { AsociaciondialogoComponent } from './pages/vehiculo/asociaciondialogo/asociaciondialogo.component';
+import { ConfirmaDialogComponent } from './pages/conductor/confirma-dialog/confirma-dialog.component';
 
 export function tokenGetter() {
   let tk = sessionStorage.getItem(environment.TOKEN);
@@ -50,7 +51,8 @@ export function tokenGetter() {
     ConductorComponent,
     AgregarConductorComponent,
     HhomeComponent,
-    AsociaciondialogoComponent
+    AsociaciondialogoComponent,
+    ConfirmaDialogComponent
   ],
   imports: [
     BrowserModule,
