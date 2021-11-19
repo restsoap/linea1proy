@@ -1,14 +1,12 @@
 <button
-  mat-fab
-  class="cerrar"
+  mat-raised-button
   style="float: right"
   color="accent"
   (click)="cerrarDialogo()"
 >
-  <mat-icon>cancel</mat-icon>
+  Cancelar
 </button>
 
-<p>Conductores</p>
 <p>Placa de Vehículo: {{ data.placa }}</p>
 <table>
   <div class="content">
@@ -32,7 +30,7 @@
         <button
           mat-raised-button
           class="asociar"
-          color="primary"
+          color="accent"
           (click)="Asociar()"
         >
           Asociar
@@ -42,7 +40,7 @@
   </div>
 </table>
 <br />
-<!--
+
 <div class="tabla_asociacion">
   <table
     mat-table
@@ -63,7 +61,7 @@
       <mat-cell *matCellDef="let element"> {{ element.nombre }} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="acciones">
-      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Desasociar </mat-header-cell>
       <mat-cell *matCellDef="let conductor">
         <button
           mat-stroked-button
@@ -81,4 +79,3 @@
   </table>
 </div>
 <mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 5]"></mat-paginator>
--->

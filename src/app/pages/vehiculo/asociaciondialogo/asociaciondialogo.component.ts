@@ -26,7 +26,7 @@ export class AsociaciondialogoComponent implements OnInit {
   vehiculo: Vehiculo;
 
   ids: number;
-  displayedColumns: any[] = ['nommbre', 'apellido', 'acciones'];
+  displayedColumns: any[] = ['nombre', 'apellido', 'acciones'];
   dataSourceConductores = new MatTableDataSource<Conductor>();
 
   // pal paginador
@@ -50,14 +50,17 @@ export class AsociaciondialogoComponent implements OnInit {
     this.dialogRef.close({event: 'Cancelo'});
   }
 
+  // lista de datos
   cargarDatosTabla(){
     this.conductorService.conductoresAsociados(this.idVehiculo).subscribe(res => {
+      console.log('data'+ res);
       this.dataSourceConductores = new MatTableDataSource(res);
       this.dataSourceConductores.paginator = this.paginator;
       this.dataSourceConductores.sort = this.sort;
     });
   }
 
+  // lista para no asociados
   listaNoAsociados(){
     this.conductorService.conductoresNoAsociados(this.idVehiculo).subscribe(data => {
       this.dataSourceSelect = data;

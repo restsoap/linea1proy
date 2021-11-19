@@ -78,6 +78,7 @@ export class VehiculoComponent implements OnInit, OnDestroy {
   abrirDialogo(vehiculo: Vehiculo){
     const dialogRef = this.dialog.open(AsociaciondialogoComponent, {
       width: '450px',
+      height: '450px',
       data: {placa: vehiculo.placa, idVehiculo: vehiculo.idVehiculo}
     });
   }
