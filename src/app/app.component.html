@@ -1,36 +1,33 @@
 <div class="example-container">
-
   <!--[hidden]="route.children.length !== 0 " -->
   <!--*ngIf="isLoggedIn$ | async as isLoggedIn"-->
   <div [hidden]="flagToolbar">
-    <mat-toolbar color="accent" class="example-toolbar" > 
-      
+    <mat-toolbar color="accent" class="example-toolbar">
       <button mat-icon-button (click)="drawer.toggle()">
         <mat-icon *ngIf="!drawer.opened">menu</mat-icon>
         <mat-icon *ngIf="drawer.opened">close</mat-icon>
-      </button>   
-        <h1 class="example-app-name">ENVIOS UDEC</h1>
-  
-        <span class="example-spacer"></span>
-  
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-              <mat-icon>more_vert</mat-icon>
-          </button>
-  
-          <mat-menu #menu="matMenu">
-              <button mat-menu-item [routerLink]="['/perfil']">
-                  <mat-icon>account_box</mat-icon>
-                  <span>Mi Perfil</span>
-              </button>
-              <button mat-menu-item (click)="onLogout()">
-                  <mat-icon>exit_to_app</mat-icon>
-                  <span>Cerrar Sesión</span>
-              </button>
-          </mat-menu>
-    
+      </button>
+      <h1 class="example-app-name">ENVIOS UDEC</h1>
+
+      <span class="example-spacer"></span>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [routerLink]="['/perfil']">
+          <mat-icon>account_box</mat-icon>
+          <span>Mi Perfil</span>
+        </button>
+        <button mat-menu-item (click)="onLogout()">
+          <mat-icon>exit_to_app</mat-icon>
+          <span>Cerrar Sesión</span>
+        </button>
+      </mat-menu>
     </mat-toolbar>
   </div>
-  
+
   <!---->
   <div [hidden]="flagProgressBar">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
@@ -38,55 +35,76 @@
 
   <mat-drawer-container class="example-sidenav-content" autosize>
     <mat-drawer #drawer style="width: 200px" mode="side">
+      <img src="assets/udec_escudo.png" width="128" style="margin-left: 20px" />
 
-        <img src="assets/udec_escudo.png" width="128" style="margin-left: 20px;" />
-
-        <div [hidden]="flagadmin" [hidden]="flaguser">
-          <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/home']">
-            <mat-icon>home</mat-icon>
-            <span>Inicio</span>
-          </button>
-          <mat-divider></mat-divider> 
-        </div>  
-
-        <div [hidden]="flagadmin">
-          <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/departamento']">
-            <mat-icon>room</mat-icon>
-            <span>Departamento</span>
-          </button>
-          <mat-divider></mat-divider> 
-        </div>    
-
-        <div [hidden]="flagadmin">
-          <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/vehiculo']">
-            <mat-icon>local_shipping</mat-icon>
-            <span>Vehículo</span>
-          </button>
-          <mat-divider></mat-divider>
-        </div>
-
-        <div  [hidden]="flaguser">
-          <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/usuario']">
-            <mat-icon>account_circle</mat-icon>
-            <span>Usuario</span>
-          </button>
-          <mat-divider></mat-divider>
-        </div>
-        
-        <div [hidden]="flagadmin" >
-          <button mat-menu-item (click)="drawer.toggle()" style="cursor: pointer" [routerLink]="['/conductor']">
-            <mat-icon>time_to_leave</mat-icon>
-            <span>Conductor</span>
-          </button>
-          <mat-divider></mat-divider>
-        </div>
-      
-    </mat-drawer>
-
-      <div class="example-sidenav-content">
-          <router-outlet></router-outlet>
+      <div [hidden]="flagadmin" [hidden]="flaguser">
+        <button
+          mat-menu-item
+          (click)="drawer.toggle()"
+          style="cursor: pointer"
+          [routerLink]="['/home']"
+        >
+          <mat-icon>home</mat-icon>
+          <span>Inicio</span>
+        </button>
+        <mat-divider></mat-divider>
       </div>
 
-    </mat-drawer-container>
+      <div [hidden]="flagadmin">
+        <button
+          mat-menu-item
+          (click)="drawer.toggle()"
+          style="cursor: pointer"
+          [routerLink]="['/departamento']"
+        >
+          <mat-icon>room</mat-icon>
+          <span>Departamento</span>
+        </button>
+        <mat-divider></mat-divider>
+      </div>
 
+      <div [hidden]="flagadmin">
+        <button
+          mat-menu-item
+          (click)="drawer.toggle()"
+          style="cursor: pointer"
+          [routerLink]="['/vehiculo']"
+        >
+          <mat-icon>local_shipping</mat-icon>
+          <span>Vehículo</span>
+        </button>
+        <mat-divider></mat-divider>
+      </div>
+
+      <div [hidden]="flaguser">
+        <button
+          mat-menu-item
+          (click)="drawer.toggle()"
+          style="cursor: pointer"
+          [routerLink]="['/usuario']"
+        >
+          <mat-icon>account_circle</mat-icon>
+          <span>Usuario</span>
+        </button>
+        <mat-divider></mat-divider>
+      </div>
+
+      <div [hidden]="flagadmin">
+        <button
+          mat-menu-item
+          (click)="drawer.toggle()"
+          style="cursor: pointer"
+          [routerLink]="['/conductor']"
+        >
+          <mat-icon>time_to_leave</mat-icon>
+          <span>Conductor</span>
+        </button>
+        <mat-divider></mat-divider>
+      </div>
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container>
 </div>

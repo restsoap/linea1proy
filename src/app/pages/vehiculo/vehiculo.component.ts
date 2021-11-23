@@ -7,7 +7,7 @@ import { Vehiculo } from 'src/app/_model/Vehiculo';
 import { BarraDeProgresoService } from 'src/app/_service/barra-de-progreso.service';
 import { VehiculoService } from './../../_service/vehiculo.service';
 
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { AsociaciondialogoComponent } from './asociaciondialogo/asociaciondialogo.component';
 
 @Component({

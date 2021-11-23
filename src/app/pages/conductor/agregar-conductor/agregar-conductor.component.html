@@ -165,11 +165,12 @@
       <td>
         <mat-form-field class="example-full-width">
           <mat-label>Departamento</mat-label>
-          <mat-select formControlName="departamento"
+          <mat-select
+            formControlName="departamento"
             [(value)]="idDepartamento"
             (selectionChange)="idDepar($event.value)"
           >
-            <mat-option 
+            <mat-option
               [value]="departamento.idDepartamento"
               *ngFor="let departamento of dataSource"
             >

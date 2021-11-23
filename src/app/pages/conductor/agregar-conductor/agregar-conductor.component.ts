@@ -37,7 +37,8 @@ export class AgregarConductorComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private snackBar: MatSnackBar,
-    private departamentoService: DepartamentoService
+    private departamentoService: DepartamentoService,
+    private barraDeProgresoService: BarraDeProgresoService
   ) { }
 
   ngOnInit(): void {

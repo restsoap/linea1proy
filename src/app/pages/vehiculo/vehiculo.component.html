@@ -46,12 +46,10 @@
           <mat-icon>edit_note</mat-icon>
         </button>
         <button mat-button color="accent" (click)="abrirDialogo(element)">
-          <span class="material-icons">
-            checklist_rtl
-          </span>
+          <span class="material-icons"> checklist_rtl </span>
         </button>
       </td>
-    </ng-container> 
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

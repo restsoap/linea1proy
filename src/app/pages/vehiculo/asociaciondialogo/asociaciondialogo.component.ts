@@ -3,7 +3,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
 import { Asociacion } from 'src/app/_model/Asociacion';
 import { Conductor } from 'src/app/_model/Conductor';
 import { Vehiculo } from 'src/app/_model/Vehiculo';
