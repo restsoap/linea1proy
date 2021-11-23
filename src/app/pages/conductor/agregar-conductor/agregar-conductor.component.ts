@@ -113,12 +113,12 @@ export class AgregarConductorComponent implements OnInit {
       this.formConductor.get('nombre').setValue(data.nombre);
       this.formConductor.get('apellido').setValue(data.apellido);
       this.formConductor.get('nick').setValue(data.nick);
-      this.formConductor.get('clave').setValue(data.clave);
+      this.formConductor.get('clave').setValue(data.correo);
       this.formConductor.get('direccion').setValue(data.direccion);
       this.formConductor.get('celular').setValue(data.celular);
       this.formConductor.get('celularAux').setValue(data.celularAux);
       this.formConductor.get('correo').setValue(data.correo);
-      this.formConductor.get('departamento').setValue(data.ciudad.departamento);
+      // this.formConductor.get('departamento').setValue(data.ciudad.departamento);
       this.formConductor.get('ciudadReg').setValue(data.ciudad);
     });
   }
@@ -148,7 +148,7 @@ export class AgregarConductorComponent implements OnInit {
     conductor.ciudad = this.formConductor.value['ciudadReg'];
 
     if (this.edicion === true) {
-      console.log(conductor);
+      // console.log(conductor);
       conductor.idUsuario = this.id;
       this.conductorService.editar(conductor).subscribe(() => {
         this.openSnackBarr('Editado correctamente');
@@ -156,7 +156,7 @@ export class AgregarConductorComponent implements OnInit {
         this.router.navigate(['/conductor']);
       });
     } else {
-      console.log(conductor);
+      // console.log(conductor);
       this.conductorService.guardar(conductor).subscribe(() => {
         this.formConductor.reset();
         this.openSnackBarr('Guardado correctamente');
