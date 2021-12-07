@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
     idle.onIdleEnd.subscribe(() => {
       this.idleState = 'La sesion ya no está inactiva.';
       this.openSnackBar('La sesion ya no está inactiva.');
-      console.log(this.idleState);
+      // console.log(this.idleState);
       this.reset();
     });
 
@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
 
       this.idleState = 'Desconectado!';
       this.timedOut = true;
-      console.log(this.idleState);
+      // console.log(this.idleState);
       this.router.navigate(['']);
       this.openSnackBar('Sesión terminada, por favor inicie sesión nuevamente.');
       this.logService.cerrarSesion();
@@ -65,7 +65,7 @@ export class AppComponent implements OnInit {
 
     idle.onIdleStart.subscribe(() => {
       this.idleState = 'Tu\'estado es inactivo!';
-      console.log(this.idleState);
+      // console.log(this.idleState);
 
       // this.childModal.show();
     });
@@ -73,7 +73,7 @@ export class AppComponent implements OnInit {
     idle.onTimeoutWarning.subscribe((countdown) => {
       this.idleState = 'Te detendrás en:' + countdown + ':Segundos!';
       this.openSnackBar('Te detendrás en:' + countdown + ':Segundos!');
-      console.log(this.idleState);
+      // console.log(this.idleState);
     });
 
     // establece el intervalo de ping en 15 segundos
